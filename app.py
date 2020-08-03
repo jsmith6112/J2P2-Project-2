@@ -70,24 +70,29 @@ def sba_startup():
 
     return sba_json
 
-# @app.route("/api/pals")
-# def pals():
-#     conn = engine.connect()
+@app.route("/api/sba_loan_banks")
+def sba_startup():
+    conn = engine.connect()
     
-#     query = '''
-#         SELECT 
-#             *
-#         FROM
-#             pets
-#     ''' 
+    query = '''
+        SELECT 
+            BankName,
+            JobsSupported,
+            GrossApproval
+        FROM
+            sba_loan_detail 
+        GROUP BY 
+            BankName
+        Limit 10000    
+    ''' 
 
-#     pets_df = pd.read_sql(query, con=conn)
+    sba_df = pd.read_sql(query, con=conn)
 
-#     pets_json = pets_df.to_json(orient='records')
+    sba_json = sba_df.to_json(orient='records')
 
-#     conn.close()
+    conn.close()
 
-#     return pets_json
+    return sba_json
 
 if __name__ == "__main__":
     app.run(debug=True)
