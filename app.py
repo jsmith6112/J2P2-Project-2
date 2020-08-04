@@ -1,6 +1,8 @@
 # import necessary libraries
 import pandas as pd
 
+import json
+
 import pymysql
 #from sqlalchemy import create_engine
 
@@ -48,7 +50,7 @@ def home():
 
 #     conn.close()
 
-    # return render_template("form.html")
+#     return render_template("form.html")
 
 @app.route("/api/sba_loan_detail")
 def sba_startup():
@@ -64,14 +66,48 @@ def sba_startup():
 
     sba_df = pd.read_sql(query, con=conn)
 
-    sba_json = sba_df.to_json(orient='records')
+    sba_json = sba_df.to_json(orient='index')
 
     conn.close()
 
     return sba_json
 
-@app.route("/api/sba_loan_banks")
-def sba_startup():
+
+@app.route("/api/sba_fy_state_approvals")
+def fy_state_approvals():
+    
+    # conn = engine.connect()
+    
+    # query = '''
+    #     SELECT
+    #         BorrState
+    #         ,SUM(GrossApproval) AS GrossApproval
+    #     FROM
+    #         `sba-schema`.sba_loan_detail
+    #     GROUP BY
+    #         BorrState
+    # ''' 
+
+    # sba_df = pd.read_sql(query, con=conn)
+    # sba_df.set_index('BorrState', inplace=True)
+
+    # sba_json = sba_df.to_json(orient='index')
+
+    # conn.close()
+    
+
+    with open('us-states-with-loan-data.json') as json_file:
+        sba_json = json.load(json_file)
+        #print(sba_json)
+
+    return sba_json
+
+
+
+
+
+@app.route("/api/jobs_suppported")
+def jobs_supported():
     conn = engine.connect()
     
     query = '''
@@ -83,16 +119,16 @@ def sba_startup():
             sba_loan_detail 
         GROUP BY 
             BankName
-        Limit 10000    
+        Limit 100   
     ''' 
 
-    sba_df = pd.read_sql(query, con=conn)
+    jobs_df = pd.read_sql(query, con=conn)
 
-    sba_json = sba_df.to_json(orient='records')
+    jobs_json = jobs_df.to_json(orient='records')
 
     conn.close()
 
-    return sba_json
+    return jobs_json
 
 if __name__ == "__main__":
     app.run(debug=True)
