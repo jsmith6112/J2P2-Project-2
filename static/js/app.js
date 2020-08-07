@@ -27,3 +27,56 @@ function supportedJobs() {
 Plotly.newPlot("plot", trace, layout);
 });
 }
+
+function sbaloans_by_year() {
+  var url = "/api/sba_by_year";
+  d3.json(url).then(function(response) {
+    
+    var year = response.map(d => d.ApprovalFiscalYear);
+    var loans = response.map(d => d.GrossApproval);
+
+    console.log(response);
+    console.log(year);
+    console.log(loans);
+
+var data = [{
+  type: 'bar',
+  x : loans,
+  y : year,
+  orientation: 'h'
+ 
+}];
+
+var layout = {
+  title: 'US Small Business Admin Loans Totals by Year',
+  xaxis:{
+   title:"Loan Dollars ($Billions)"
+  },
+  yaxis:{
+   title: "Fiscal Year"
+  }
+};
+
+Plotly.newPlot('sbayear',data, layout)
+})
+};
+sbaloans_by_year()
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+

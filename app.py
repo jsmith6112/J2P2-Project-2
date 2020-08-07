@@ -102,14 +102,32 @@ def fy_state_approvals():
 
     return sba_json
 
+@app.route("/api/sba_by_year")
+def sba_year():
+    conn = engine.connect()
+    
+    query = '''
+        SELECT 
+            ApprovalFiscalYear,
+            SUM(GrossApproval) AS GrossApproval
+        FROM
+	        `sba-schema`.sba_loan_detail
+        GROUP BY 
+            ApprovalFiscalYear
+    '''
+    sba_by_year_df = pd.read_sql(query, con=conn)
 
+    sbayear_json = sba_by_year_df.to_json(orient='records')
 
+    conn.close()
+
+    return sbayear_json
 
 
 @app.route("/api/jobs_suppported")
 def jobs_supported():
     conn = engine.connect()
-    
+
     query = '''
         SELECT 
             BankName,
@@ -132,3 +150,6 @@ def jobs_supported():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+    
