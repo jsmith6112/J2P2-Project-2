@@ -22,30 +22,30 @@ engine = create_engine(f"mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_end
 
 # create route that renders index.html template
 @app.route("/")
-def home():    
+def home():
     return render_template("index.html")
 
 # create route that renders about.html template
 @app.route("/about")
-def aboutPage():    
-    return render_template("about.html") 
+def aboutPage():
+    return render_template("about.html")
 
 @app.route("/learn-more copy")
-def learnMoreCopy():    
-    return render_template("learn-more copy.html")  
-             
-# API enpoint with ALL the Data 
+def learnMoreCopy():
+    return render_template("learn-more copy.html")
+
+# API enpoint with ALL the Data
 @app.route("/api/sba_loan_detail")
 def sba_startup():
     conn = engine.connect()
-    
+
     query = '''
-        SELECT 
+        SELECT
             *
         FROM
-            sba_loan_detail 
-        Limit 10000    
-    ''' 
+            sba_loan_detail
+        Limit 10000
+    '''
 
     sba_df = pd.read_sql(query, con=conn)
 
@@ -56,26 +56,16 @@ def sba_startup():
     return sba_json
 
 
-    
-#Loop used to export data to Json For Chloropleth 
-    with open('us-states-with-loan-data.json') as json_file:
-        sba_json = json.load(json_file)
-        #print(sba_json)
-
-    return sba_json
-
-
-
 # Rouute that Groups data by both State and Business type. Route used for the horzonatal pargraph by type and State
 @app.route("/api/business_type_state")
 def jobs_supported():
     conn = engine.connect()
-    
+
     query = '''
        SELECT
             BusinessType
             ,BorrState
-            ,Count(BusinessType) AS CountBusinessType 
+            ,Count(BusinessType) AS CountBusinessType
             ,Sum(GrossApproval) AS GrossApproval
         FROM
 	        `sba-schema`.sba_loan_detail
@@ -83,8 +73,8 @@ def jobs_supported():
             BorrState,
             BusinessType
         ORDER BY
-	        BorrState 
-    ''' 
+	        BorrState
+    '''
 
     jobs_df = pd.read_sql(query, con=conn)
 
@@ -95,13 +85,13 @@ def jobs_supported():
     return jobs_json
 
 
-# Used to group franchise and year 
+# Used to group franchise and year
 @app.route("/api/top_franchise")
 def top_franchise():
     conn = engine.connect()
-    
+
     query = '''
-        SELECT 
+        SELECT
             ApprovalFiscalYear,
             FranchiseName,
             sum(GrossApproval) AS GrossApproval
@@ -109,13 +99,13 @@ def top_franchise():
             `sba-schema`.sba_loan_detail
         WHERE
             FranchiseName IS NOT NULL
-        GROUP BY 
+        GROUP BY
             ApprovalFiscalYear,
             FranchiseName
-        ORDER BY 
+        ORDER BY
             GrossApproval DESC
         LIMIT 20
-    ''' 
+    '''
 
     franchise_df = pd.read_sql(query, con=conn)
 
@@ -126,25 +116,25 @@ def top_franchise():
     return franchise_json
 
 
-#Route for table of top banks 
+#Route for table of top banks
 @app.route("/api/top_banks")
 def top_banks():
     conn = engine.connect()
-    
+
     query = '''
-        SELECT 
+        SELECT
             BankName,
             ROUND(avg(GrossApproval)) AS AverageApproval,
             BankCity,
             BankState
-        FROM 
+        FROM
             `sba-schema`.sba_loan_detail
-        GROUP BY 
+        GROUP BY
             BankName,
             BankState
         ORDER BY
            AverageApproval DESC
-    ''' 
+    '''
 
     banks_df = pd.read_sql(query, con=conn)
 
@@ -153,6 +143,65 @@ def top_banks():
     conn.close()
 
     return banks_json
+
+# ------------------------ MAP ENDPOINTS ------------------------------------
+@app.route("/api/sba_by_state_approvals")
+def fy_state_approvals():
+
+    with open('us-states-with-loan-data.json') as json_file:
+        sba_json = json.load(json_file)
+        # print(sba_json)
+
+    return sba_json
+
+# -------------------------- MAP PAGE ------------------------------------
+@app.route("/loanmap")
+def loan_map():
+    return render_template("map.html")
+
+# -------------------------- LOAN Frequency ENDPOINTS -------------------------
+@app.route("/loan_frequency")
+def loan_freq():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+        	ApprovalFiscalYear as Year,
+        	NaicsCode, NaicsDescription as Industry_Classification,
+        	count(NaicsDescription) as Industry_Counts
+        FROM `sba-schema`.sba_loan_detail
+        GROUP BY Year,NaicsDescription
+        ORDER BY Year,Industry_Counts DESC
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
+
+# ------------------------ TOP10 Industry Chart Page --------------------------
+@app.route("/top10industry")
+def top10_industry():
+    return render_template("industry_class.html")
+
+
+
+# ------------------------ GDP by States ENDPOINTS ------------------------------------
+@app.route("/states_gdp")
+def st_gdp():
+
+    with open('gdp12to19.json') as json_file:
+        st_json = json.load(json_file)
+
+    return jsonify(st_json)
+
+# ------------------------ GDP.html Page --------------------------
+@app.route("/gdp")
+def gdp_st():
+    return render_template("gdp.html")
+
+
 
 
 if __name__ == "__main__":
