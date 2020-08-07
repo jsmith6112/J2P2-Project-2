@@ -1,11 +1,10 @@
 .header{
-    color:#353535;
+    color:#6b5c73;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
     font-weight: bold;
     padding-top: 40px;
-};
-.subheaders{}:
+}
 
 .container {
     width: 100%;
@@ -22,21 +21,82 @@
     margin: 0;
     padding: 0;
     }
-.nav-bar-color: {};
+
+.nav-bar-color {
+    background-color: #485c7f !important;
+    }
 
   /* Style legend on Map */
-  .legend {
-      line-height: 18px;
-      color: #555;
-  }
-  .legend i {
-      width: 18px;
-      height: 18px;
-      float: left;
-      margin-right: 8px;
-      opacity: 0.7;
-  }
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
 
-  .min .max {
-    font-size: 5rem;
-  }
+.min .max {
+font-size: 5rem;
+}
+
+.jumbotron
+{background-color:rgba(218, 217, 217, 0.781);
+}
+
+.display-4 {
+    font-size: 3.5rem;
+    font-weight: BOLDER !important;
+    line-height: 3 !important;
+    color: #485c7f;
+    text-align: center;
+}
+.lead{
+    font-size: 2rem;
+    font-weight: 500 !important;
+    color: #b46b5b;
+    text-align: center;
+}
+
+.paragraphs-home {
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+color:	#404346;
+text-align: center;
+
+}
+
+.line {
+    position: relative; 
+    top: 20px; 
+    border: none; 
+    height: 3px; 
+    width: 1800px;
+    background:#8594a4; 
+    margin-bottom: 50px;
+    align-items: center; 
+
+
+}
+
+.navbar {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    height: 80px;
+}
+
+.navbar-light .navbar-brand {
+    color: #d06c50 !important;
+    font-size: xx-large;
+    font-weight: 400;
+}

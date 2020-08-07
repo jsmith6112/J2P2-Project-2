@@ -30,9 +30,9 @@ def home():
 def aboutPage():
     return render_template("about.html")
 
-@app.route("/learn-more copy")
-def learnMoreCopy():
-    return render_template("learn-more copy.html")
+@app.route("/learn-more")
+def learnMore():
+    return render_template("learn-more.html")
 
 # API enpoint with ALL the Data
 @app.route("/api/sba_loan_detail")
@@ -100,11 +100,10 @@ def top_franchise():
         WHERE
             FranchiseName IS NOT NULL
         GROUP BY
-            ApprovalFiscalYear,
             FranchiseName
         ORDER BY
             GrossApproval DESC
-        LIMIT 20
+        LIMIT 10
     '''
 
     franchise_df = pd.read_sql(query, con=conn)

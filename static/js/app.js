@@ -1,4 +1,3 @@
-
 function Businesstypes() {
     /* data route */
   var url = "/api/business_type_state";
@@ -15,8 +14,10 @@ function Businesstypes() {
       'type': 'bar',
       text: approve.map(String),
       textposition: 'auto',
-      orientation: 'h'
-  }];
+      orientation: 'h',
+      marker:{
+        color: 'rgb(61, 90, 128)'
+  }}];
 
     var layout = {
       title: "Loans By Business Type",
@@ -37,23 +38,36 @@ Businesstypes();
 d3.select('#state-selector').on('change', updateBusinessTypes);
 function updateBusinessTypes() {
   /* data route */
-state = d3.select('#state-selector').node().value;
-var url = "/api/business_type_state";
-d3.json(url).then(function(response) {
-    var stateData = response.filter(d => d.BorrState == state);
-    var bizType = stateData.map(business => business.BusinessType);
-    var approve = stateData.map(approval => approval.GrossApproval);
+  state = d3.select('#state-selector').node().value;
+  var url = "/api/business_type_state";
+  d3.json(url).then(function(response) {
+      var stateData = response.filter(d => d.BorrState == state);
+      var bizType = stateData.map(business => business.BusinessType);
+      var approve = stateData.map(approval => approval.GrossApproval);
 
-  var trace = [{
-    'y': bizType,
-    'x': approve,
-    'type': 'bar',
-    text: approve.map(String),
-    textposition: 'auto',
-    orientation: 'h'
-}];
+      var trace = [{
+        'y': bizType,
+        'x': approve,
+        'type': 'bar',
+        text: approve.map(String),
+        textposition: 'auto',
+        orientation: 'h',
+        marker:{
+          color: 'rgb(61, 90, 128)'
+  }}];
+  
+      var layout = {
+        title: "Loans By Business Type",
+        xaxis: {
+          title: "Business Type"
+        },
+        yaxis: {
+          title: "Gross Aprroval"
+        }
+      };
 
-  Plotly.react("plot", trace);
+
+  Plotly.react("plot", trace,layout);
 });
 }
 
@@ -70,57 +84,38 @@ function Franchise() {
     var year = response.map (year => year.ApprovalFiscalYear);
     
     var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
+    var myChart = new Chart(ctx,{
         type: 'horizontalBar',
         data: {
             labels: franchiseName,
             datasets: [{
-                label: 'TOP FRANCHISES',
+                // label: 'TOP FRANCHISES',
                 data: grossApprove,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(222, 110, 75, 0.5)',
+                    'rgba(199, 107, 83, 0.5)',
+                    'rgba(176, 104, 90, 0.5)',
+                    'rgba(153, 101, 97, 0.5)',
+                    'rgba(143, 100, 104, 0.5)',
+                    'rgba(130, 98, 105, 0.5)',
+                    'rgba(107, 95, 112, 0.5)',
+                    'rgba(84, 92, 120, 0.5)',
+                    'rgba(133, 148, 164, 0.5)',
+                    'rgba(61, 90, 128, 0.5)'
+
                     
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 159, 64, 1)'
+                  'rgba(222, 110, 75, 1)',
+                  'rgba(199, 107, 83, 1)',
+                  'rgba(176, 104, 90, 1)',
+                  'rgba(153, 101, 97, 1)',
+                  'rgba(143, 100, 104, 1)',
+                  'rgba(130, 98, 105, 1)',
+                  'rgba(107, 95, 112, 1)',
+                  'rgba(84, 92, 120, 1)',
+                  'rgba(133, 148, 164, 1)',
+                  'rgba(61, 90, 128, 1)'
                 ],
                 borderWidth: 1
             }]
@@ -134,7 +129,7 @@ function Franchise() {
                 }]
             }
         }
-    })
+    });
   });}
   Franchise();
 
@@ -158,7 +153,7 @@ function buildTable() {
         var tbody = d3.select("#bank-tbody");
         console.log(tbody);
         var trow;
-        tbody.html("")
+        tbody.html("");
       for (var i = 0; i < bankName.length; i++) {
         trow = tbody.append("tr");
         trow.append("td").text(bankName[i]);

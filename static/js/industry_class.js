@@ -21,15 +21,15 @@ function init() {
       orientation: 'h',
       marker:{
                 color: ['#738396',
-                        '#4ECDC4',
-                        '#BB7E8C',
-                        '#FF6B6B',
-                        '#FFE66D',
-                        '#738396',
-                        '#4ECDC4',
-                        '#BB7E8C',
-                        '#FF6B6B',
-                        '#FFE66D']
+                '#4ECDC4',
+                '#BB7E8C',
+                '#FF6B6B',
+                '#FFE66D',
+                '#738396',
+                '#4ECDC4',
+                '#BB7E8C',
+                '#FF6B6B',
+                '#FFE66D']
       },
       text: industry.map(String),
       textposition: 'auto'
@@ -82,16 +82,16 @@ function updateYear() {
       type: 'bar',
       orientation: 'h',
       marker:{
-                color: ['#738396',
-                        '#4ECDC4',
-                        '#BB7E8C',
-                        '#FF6B6B',
-                        '#FFE66D',
-                        '#738396',
-                        '#4ECDC4',
-                        '#BB7E8C',
-                        '#FF6B6B',
-                        '#FFE66D']
+        color: ['#738396',
+                '#4ECDC4',
+                '#BB7E8C',
+                '#FF6B6B',
+                '#FFE66D',
+                '#738396',
+                '#4ECDC4',
+                '#BB7E8C',
+                '#FF6B6B',
+                '#FFE66D']
       },
       text: industry.map(String),
       textposition: 'auto'
