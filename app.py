@@ -1,13 +1,10 @@
 # import necessary libraries
 import pandas as pd
-
 import json
-
 import pymysql
 #from sqlalchemy import create_engine
 
 from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
-
 pymysql.install_as_MySQLdb()
 
 from flask import (
@@ -25,44 +22,30 @@ engine = create_engine(f"mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_end
 
 # create route that renders index.html template
 @app.route("/")
-def home():    
+def home():
     return render_template("index.html")
 
-# Query the database and send the jsonified results
-# @app.route("/send", methods=["GET", "POST"])
-# def send():
-#     conn = engine.connect()
+# create route that renders about.html template
+@app.route("/about")
+def aboutPage():
+    return render_template("about.html")
 
-#     if request.method == "POST":
-#         name = request.form["petName"]
-#         pet_type = request.form["petType"]
-#         age = request.form["petAge"]
+@app.route("/learn-more copy")
+def learnMoreCopy():
+    return render_template("learn-more copy.html")
 
-#         pets_df = pd.DataFrame({
-#             'name': [name],
-#             'type': [pet_type],
-#             'age': [age]
-#         })
-
-#         pets_df.to_sql('pets', con=conn, if_exists='append', index=False)
-
-#         return redirect("/", code=302)
-
-#     conn.close()
-
-#     return render_template("form.html")
-
+# API enpoint with ALL the Data
 @app.route("/api/sba_loan_detail")
 def sba_startup():
     conn = engine.connect()
-    
+
     query = '''
-        SELECT 
+        SELECT
             *
         FROM
-            sba_loan_detail 
-        Limit 10000    
-    ''' 
+            sba_loan_detail
+        Limit 10000
+    '''
 
     sba_df = pd.read_sql(query, con=conn)
 
@@ -73,35 +56,29 @@ def sba_startup():
     return sba_json
 
 
-@app.route("/api/sba_fy_state_approvals")
-def fy_state_approvals():
-    
-    # conn = engine.connect()
-    
-    # query = '''
-    #     SELECT
-    #         BorrState
-    #         ,SUM(GrossApproval) AS GrossApproval
-    #     FROM
-    #         `sba-schema`.sba_loan_detail
-    #     GROUP BY
-    #         BorrState
-    # ''' 
+# Rouute that Groups data by both State and Business type. Route used for the horzonatal pargraph by type and State
+@app.route("/api/business_type_state")
+def jobs_supported():
+    conn = engine.connect()
 
-    # sba_df = pd.read_sql(query, con=conn)
-    # sba_df.set_index('BorrState', inplace=True)
+    query = '''
+       SELECT
+            BusinessType
+            ,BorrState
+            ,Count(BusinessType) AS CountBusinessType
+            ,Sum(GrossApproval) AS GrossApproval
+        FROM
+	        `sba-schema`.sba_loan_detail
+        GROUP BY
+            BorrState,
+            BusinessType
+        ORDER BY
+	        BorrState
+    '''
 
-    # sba_json = sba_df.to_json(orient='index')
+    jobs_df = pd.read_sql(query, con=conn)
 
-    # conn.close()
-    
-
-    with open('us-states-with-loan-data.json') as json_file:
-        sba_json = json.load(json_file)
-        #print(sba_json)
-
-    return sba_json
-
+<<<<<<< HEAD
 @app.route("/api/sba_by_year")
 def sba_year():
     conn = engine.connect()
@@ -122,34 +99,122 @@ def sba_year():
     conn.close()
 
     return sbayear_json
-
-
-@app.route("/api/jobs_suppported")
-def jobs_supported():
-    conn = engine.connect()
-
-    query = '''
-        SELECT 
-            BankName,
-            JobsSupported,
-            GrossApproval
-        FROM
-            sba_loan_detail 
-        GROUP BY 
-            BankName
-        Limit 100   
-    ''' 
-
-    jobs_df = pd.read_sql(query, con=conn)
-
+=======
     jobs_json = jobs_df.to_json(orient='records')
 
     conn.close()
 
     return jobs_json
+>>>>>>> master
+
+
+# Used to group franchise and year
+@app.route("/api/top_franchise")
+def top_franchise():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+            ApprovalFiscalYear,
+            FranchiseName,
+            sum(GrossApproval) AS GrossApproval
+        FROM
+            `sba-schema`.sba_loan_detail
+        WHERE
+            FranchiseName IS NOT NULL
+        GROUP BY
+            ApprovalFiscalYear,
+            FranchiseName
+        ORDER BY
+            GrossApproval DESC
+        LIMIT 20
+    '''
+
+    franchise_df = pd.read_sql(query, con=conn)
+
+    franchise_json = franchise_df.to_json(orient='records')
+
+    conn.close()
+
+    return franchise_json
+
+
+#Route for table of top banks
+@app.route("/api/top_banks")
+def top_banks():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+            BankName,
+            ROUND(avg(GrossApproval)) AS AverageApproval,
+            BankCity,
+            BankState
+        FROM
+            `sba-schema`.sba_loan_detail
+        GROUP BY
+            BankName,
+            BankState
+        ORDER BY
+           AverageApproval DESC
+    '''
+
+    banks_df = pd.read_sql(query, con=conn)
+
+    banks_json = banks_df.to_json(orient='records')
+
+    conn.close()
+
+    return banks_json
+
+# ------------------------ MAP ENDPOINTS ------------------------------------
+@app.route("/api/sba_by_state_approvals")
+def fy_state_approvals():
+
+    with open('us-states-with-loan-data.json') as json_file:
+        sba_json = json.load(json_file)
+        # print(sba_json)
+
+    return sba_json
+
+# -------------------------- LOAN Frequency ENDPOINTS -------------------------
+@app.route("/loan_frequency")
+def loan_freq():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+        	ApprovalFiscalYear as Year,
+        	NaicsCode, NaicsDescription as Industry_Classification,
+        	count(NaicsDescription) as Industry_Counts
+        FROM `sba-schema`.sba_loan_detail
+        GROUP BY Year,NaicsDescription
+        ORDER BY Year,Industry_Counts DESC
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
+
+
+# ------------------------ GDP by States ENDPOINTS ------------------------------------
+@app.route("/states_gdp")
+def st_gdp():
+
+    with open('gdp12to19.json') as json_file:
+        st_json = json.load(json_file)
+
+    return jsonify(st_json)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+<<<<<<< HEAD
 
 
     
+=======
+>>>>>>> master
