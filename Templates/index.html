@@ -23,17 +23,38 @@
 </head>
 
 <body>
-  Testing
-  
-<div id="map" style="background-color: black; height: 100%; width: 100%;" ></div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">Small Business Administration</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="learn-more.html">Learn More</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">SMALL BUSINESS ADMINISTRATION</h1>
+      <p class="lead">Learn what drives banks to lend, who they are lending to and they're lending trends over the last decade</p>
+    </div>
+  </div>
 
 
-
+  <div id="map" style="height: 50%; width: 50%;"></div>
 
   <script src="{{url_for('static', filename='js/config.js')}}"></script>
-
   <script src="{{url_for('static', filename='js/logic.js')}}"></script>
-
   <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
 
 
