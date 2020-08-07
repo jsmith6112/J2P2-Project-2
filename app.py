@@ -154,11 +154,6 @@ def fy_state_approvals():
 
     return sba_json
 
-# -------------------------- MAP PAGE ------------------------------------
-@app.route("/loanmap")
-def loan_map():
-    return render_template("map.html")
-
 # -------------------------- LOAN Frequency ENDPOINTS -------------------------
 @app.route("/loan_frequency")
 def loan_freq():
@@ -180,12 +175,6 @@ def loan_freq():
 
     return sba_json
 
-# ------------------------ TOP10 Industry Chart Page --------------------------
-@app.route("/top10industry")
-def top10_industry():
-    return render_template("industry_class.html")
-
-
 
 # ------------------------ GDP by States ENDPOINTS ------------------------------------
 @app.route("/states_gdp")
@@ -195,12 +184,6 @@ def st_gdp():
         st_json = json.load(json_file)
 
     return jsonify(st_json)
-
-# ------------------------ GDP.html Page --------------------------
-@app.route("/gdp")
-def gdp_st():
-    return render_template("gdp.html")
-
 
 
 
