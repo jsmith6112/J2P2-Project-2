@@ -184,6 +184,28 @@ def st_gdp():
 
     return jsonify(st_json)
 
+@app.route("/")
+def test():
+    return render_template("test.html")
+
+#-------------------------------SBA DATA BY YEAR FOR STATIC GRAPHH ON INDEX ------------------
+# API Route to add SBA Loan amount by year
+@app.route("/api/sba_by_year")
+def sba_year():
+    conn = engine.connect()
+    query = '''
+        SELECT 
+            ApprovalFiscalYear,
+            SUM(GrossApproval) AS GrossApproval
+        FROM
+	        `sba-schema`.sba_loan_detail
+        GROUP BY 
+            ApprovalFiscalYear
+    '''
+    sba_by_year_df = pd.read_sql(query, con=conn)
+    sbayear_json = sba_by_year_df.to_json(orient='records')
+    conn.close()
+    return sbayear_json
 
 
 if __name__ == "__main__":

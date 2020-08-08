@@ -16,22 +16,25 @@ function Businesstypes() {
       textposition: 'auto',
       orientation: 'h',
       marker:{
-        color: 'rgb(61, 90, 128)'
+        color:'rgb(72, 92, 127)',
+        opacity: 0.8
   }}];
 
+
     var layout = {
+      autosize: false,
+      width: 1000,
+      height: 500,
       title: "Loans By Business Type",
       xaxis: {
-        title: "Business Type"
-      },
-      yaxis: {
-        title: "Gross Aprroval"
+        title: "Gross Approval ($)"
       }
     };
 
     Plotly.newPlot("plot", trace, layout);
   });
 }
+
 Businesstypes();
 
 // Function to make Business Type Dynamic
@@ -53,16 +56,17 @@ function updateBusinessTypes() {
         textposition: 'auto',
         orientation: 'h',
         marker:{
-          color: 'rgb(61, 90, 128)'
+          color:'rgb(72, 92, 127)',
+          opacity: 0.8
   }}];
   
       var layout = {
+        autosize: false,
+        width: 1000,
+        height: 500,
         title: "Loans By Business Type",
         xaxis: {
           title: "Business Type"
-        },
-        yaxis: {
-          title: "Gross Aprroval"
         }
       };
 
@@ -131,9 +135,8 @@ function Franchise() {
         }
     });
   });}
-  Franchise();
+Franchise();
 
-  
 //CODE FOR TABLE: FILTERS FOR STATE 
 function buildTable() {
     /* data route */
@@ -164,7 +167,47 @@ function buildTable() {
     });
     }
     d3.select('#state-selector-banks').on('change', buildTable);
-    // buildTable();
+      // buildTable();
+
+
+
+  //FUNCTION FOR SBA BY YEAR GRAPH ON INDEX.HTML
+function sbaloans_by_year() {
+  var url = "/api/sba_by_year";
+  d3.json(url).then(function(response) {
+    var year = response.map(d => d.ApprovalFiscalYear);
+    var loans = response.map(d => d.GrossApproval);
+    console.log(response);
+    console.log(year);
+    console.log(loans);
+
+    var data = [{
+      type: 'bar',
+      x : loans,
+      y : year,
+      orientation: 'h',
+      marker:{
+        color:'rgb(72, 92, 127)',
+        opacity: 0.7
+    }}];
+    var layout = {
+      autosize: false,
+      width: 1200,
+      height: 700,
+      xaxis:{
+        title:"Loan Dollars ($Billions)"
+        },
+      yaxis:{
+        title: "Fiscal Year"
+      }
+    };
+  Plotly.newPlot('sbayear',data, layout);
+});
+}
+
+sbaloans_by_year();
+   
+
     
 
  
