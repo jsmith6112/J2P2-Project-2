@@ -20,15 +20,15 @@ function init() {
       type: 'bar',
       orientation: 'h',
       marker:{
-                color: ['#738396',
-                '#4ECDC4',
+                color: ['#355070',
+                '#B56576',
                 '#BB7E8C',
-                '#FF6B6B',
+                '#6D597A',
                 '#FFE66D',
-                '#738396',
-                '#4ECDC4',
+                '#355070',
+                '#B56576',
                 '#BB7E8C',
-                '#FF6B6B',
+                '#6D597A',
                 '#FFE66D']
       },
       text: industry.map(String),
@@ -41,7 +41,8 @@ function init() {
         title: "Loan Frequency"
       },
       yaxis: {
-        title: "Business Industries"
+        title: "Business Industries",
+        showticklabels: false
       }
     };
 
@@ -104,7 +105,8 @@ function updateYear() {
         title: "Loan Frequency"
       },
       yaxis: {
-        title: "Business Industries"
+        title: "Business Industries",
+        showticklabels: false
       }
     };
 

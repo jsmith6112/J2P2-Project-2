@@ -1,4 +1,4 @@
-.header{
+.header {
     color:#6b5c73;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
@@ -69,14 +69,14 @@ text-align: center;
 }
 
 .line {
-    position: relative; 
-    top: 20px; 
-    border: none; 
-    height: 3px; 
+    position: relative;
+    top: 20px;
+    border: none;
+    height: 3px;
     width: 1800px;
-    background:#8594a4; 
+    background:#8594a4;
     margin-bottom: 50px;
-    align-items: center; 
+    align-items: center;
 
 
 }
@@ -99,4 +99,22 @@ text-align: center;
     color: #d06c50 !important;
     font-size: xx-large;
     font-weight: 400;
+}
+
+/************ ABOUT PAGE ***********/
+.p_about_summary {
+  text-indent: 1rem;
+}
+
+.thumbnail_logo {
+  width: 200px 200px;
+}
+
+.space_btw_thumb {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.visual_thumb {
+  margin: 2rem;
 }
