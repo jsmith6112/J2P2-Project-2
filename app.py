@@ -208,6 +208,38 @@ def sba_year():
     conn.close()
     return sbayear_json
 
+# ------------------------ BAR CHART RACE -----------------------------------
+@app.route('/barchartrace_sample')
+def barchartrace():
+    conn = engine.connect()
+
+    query = '''
+            SELECT
+            	ApprovalFiscalYear
+            	,NaicsDescription AS name
+            	,SUM(GrossApproval) AS value
+            FROM
+            	sba_loan_detail
+            GROUP BY
+            	ApprovalFiscalYear
+            	,NaicsDescription
+            
+           
+    '''
+
+    data_df = pd.read_sql(query, con=conn)
+
+    # data_df.set_index('ApprovalFiscalYear', inplace=True)
+
+    data_dict = data_df.to_dict(orient='records')
+
+    data_json = data_df.to_json(orient='records')
+
+    with open('data_naics.json', 'w') as json_file:
+        json.dump(data_dict, json_file)
+    
+    return data_json
+
 
 if __name__ == "__main__":
     app.run(debug=True)

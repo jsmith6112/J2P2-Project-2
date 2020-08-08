@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Learn More</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+  <!-- James Add sbastlyes below-->
+  <!--<link rel="stylesheet" href="../css/sbastyles.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sbastyles.css') }}">
   <!--USE THIS PATH ONCE DEPLOYED TO HEROKU-->
   <!-- <link rel="stylesheet" href= "../css/stylesheet.css"> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -18,6 +21,7 @@
   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
   crossorigin=""></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script> 
 
@@ -46,14 +50,25 @@
     </div>
   </nav>
 
-  <h2 class="header"> SOME TITLE FOR THE RACE BAR CHART </h2>
+  <h2 class="header"> Time Elapsed SBA Loan Values by NAICS Code </h2>
   <hr class="line">
 
 
   <div class="container">
-    <div class="row" style=" width: 1000px;">
+    <button>Stop</button>
+    <svg id="bar-chart-race">
+      <g class="chart-container">
+        <text class="chart-title"></text>
+        <g class="x-axis"></g>
+        <g class="y-axis"></g>
+        <g class="columns"></g>
+        <text class="current-date"></text>
+      </g>
+    </svg>
+    
+    <!-- <div class="row" style=" width: 1000px;">
       <div class="col" style="height: 800px;">
-        <div id="THIS IS WHERE THE RACE CHART ID SHOULD GO" style="background-color: none; height: 100%; width: 100%;"></div>
+        <div id="bar-chart-race" style="background-color: none; height: 100%; width: 100%;"></div> -->
       </div>
     </div>
   </div>
@@ -245,10 +260,10 @@
   
   <script src="{{url_for('static', filename='js/app.js')}}"></script>
   <script src="{{url_for('static', filename='js/config.js')}}"></script>
-  <script src="{{url_for('static', filename='js/map.js')}}"></script>
+  <!--<script src="{{url_for('static', filename='js/map.js')}}"></script>-->
   <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
   <script src="{{ url_for('static', filename='js/industry_class.js')}}"></script>
-  
+  <script src="{{ url_for('static', filename='js/index.js')}}"></script>
 
   <footer>
     <p class="paragraphs-home">AUTHORS: JESSICA MURILLO - PARIYA POOCHAROEN - JAMES SMITH<br>
