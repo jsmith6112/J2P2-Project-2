@@ -3,6 +3,7 @@
 import pandas as pd
 import json
 import pymysql
+import os 
 #from sqlalchemy import create_engine
 
 from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
@@ -16,6 +17,16 @@ from flask import (
     redirect)
 
 from sqlalchemy import func, create_engine
+
+# Import your config file(s) and variable(s)
+if is_heroku == False:
+    from config import remote_db_endpoint, remote_db_port, remote_db_name, remote_db_user, remote_db_pwd
+else:
+    remote_db_endpoint = os.environ.get('remote_db_endpoint')
+    remote_db_port = os.environ.get('remote_db_port')
+    remote_db_name = os.environ.get('remote_db_name')
+    remote_db_user = os.environ.get('remote_db_user')
+    remote_db_pwd = os.environ.get('remote_db_pwd')
 
 app = Flask(__name__)
 
