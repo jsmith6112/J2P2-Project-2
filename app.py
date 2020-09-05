@@ -3,10 +3,8 @@
 import pandas as pd
 import json
 import pymysql
-import os 
-#from sqlalchemy import create_engine
+import os
 
-from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
 pymysql.install_as_MySQLdb()
 
 from flask import (
@@ -17,6 +15,10 @@ from flask import (
     redirect)
 
 from sqlalchemy import func, create_engine
+
+is_heroku = False
+if 'IS_HEROKU' in os.environ:
+    is_heroku = True
 
 # Import your config file(s) and variable(s)
 if is_heroku == False:
@@ -45,6 +47,10 @@ def aboutPage():
 @app.route("/learn-more")
 def learnMore():
     return render_template("learn-more.html")
+
+@app.route("/finalviz")
+def final_viz():
+    return render_template("finalviz.html")
 
 # API enpoint with ALL the Data
 @app.route("/api/sba_loan_detail")
@@ -159,11 +165,21 @@ def top_banks():
 @app.route("/api/sba_by_state_approvals")
 def fy_state_approvals():
 
-    with open('us-states-with-loan-data.json') as json_file:
-        sba_json = json.load(json_file)
-        # print(sba_json)
+    print('---- TRYING TO OPEN FILE-----------')
 
-    return sba_json
+    with open('us-states-with-loan-data.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+
+    print('---- OPENED FILE-----------')
+
+    print('---- READY T RETURN -----------')
+
+    return jsonify(sba_json)
 
 # -------------------------- LOAN Frequency ENDPOINTS -------------------------
 @app.route("/loan_frequency")
@@ -176,8 +192,8 @@ def loan_freq():
         	NaicsCode, NaicsDescription as Industry_Classification,
         	count(NaicsDescription) as Industry_Counts
         FROM `sba-schema`.sba_loan_detail
-        GROUP BY Year,NaicsDescription
-        ORDER BY Year,Industry_Counts DESC
+        GROUP BY Year, NaicsDescription
+        ORDER BY Year, Industry_Counts DESC
     '''
 
     sba_df = pd.read_sql(query, con=conn)
@@ -188,17 +204,7 @@ def loan_freq():
 
 
 # ------------------------ GDP by States ENDPOINTS ------------------------------------
-@app.route("/states_gdp")
-def st_gdp():
-
-    with open('gdp12to19.json') as json_file:
-        st_json = json.load(json_file)
-
-    return jsonify(st_json)
-
-@app.route("/")
-def test():
-    return render_template("test.html")
+# removed OLD state GDP
 
 #-------------------------------SBA DATA BY YEAR FOR STATIC GRAPHH ON INDEX ------------------
 # API Route to add SBA Loan amount by year
@@ -206,12 +212,12 @@ def test():
 def sba_year():
     conn = engine.connect()
     query = '''
-        SELECT 
+        SELECT
             ApprovalFiscalYear,
             SUM(GrossApproval) AS GrossApproval
         FROM
 	        `sba-schema`.sba_loan_detail
-        GROUP BY 
+        GROUP BY
             ApprovalFiscalYear
     '''
     sba_by_year_df = pd.read_sql(query, con=conn)
@@ -234,8 +240,8 @@ def barchartrace():
             GROUP BY
             	ApprovalFiscalYear
             	,NaicsDescription
-            
-           
+
+
     '''
 
     data_df = pd.read_sql(query, con=conn)
@@ -248,8 +254,119 @@ def barchartrace():
 
     with open('data_naics.json', 'w') as json_file:
         json.dump(data_dict, json_file)
-    
+
     return data_json
+
+# --------------- Number of Jobs by States ENDPOINTS ---------------
+@app.route("/jobs")
+def job_counts():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+	        Year,
+            STATE_FULL_NAME,
+            `Total Employments` as total_employments,
+            STATE
+        FROM `sba-schema`.`state-employment`
+        GROUP BY STATE, Year;
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
+
+# --------------- Income and Expense ENDPOINTS ---------------
+@app.route("/inc_exp")
+def income_expense():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+	        `state-income`.Year,
+	        `state-income`.STATE_FULL_NAME,
+            `state-income`.`Income Per Capita($)` as inc_per_cap,
+            `PCE-state`.`PCE Per Capita ($)` as exp_per_cap,
+            `state-income`.STATE
+
+        FROM `state-income`
+        LEFT JOIN `PCE-state`
+        ON `state-income`.STATE = `PCE-state`.STATE
+        GROUP BY Year, STATE_FULL_NAME;
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
+
+# --------------- GDP by States ENDPOINTS ---------------
+@app.route("/gdp")
+def gdp_by_state():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+	       Year,
+           STATE_FULL_NAME,
+           `GDP($M)` as GDP_millions,
+           STATE
+           FROM `state-gdp`
+           GROUP BY STATE_FULL_NAME, Year;
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
+
+# --------------- Populations ENDPOINTS ---------------
+@app.route("/pop")
+def pop_by_state():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+	       Year,
+           STATE_FULL_NAME,
+           Populations,
+           STATE
+        FROM `state-population`
+        GROUP BY STATE_FULL_NAME, Year;
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
+
+# --------------- Total Employees by Industries ENDPOINTS --------------
+@app.route("/employees_by_industry")
+def emp_by_ind():
+    conn = engine.connect()
+
+    query = '''
+        SELECT
+	       Year,
+           Industries,
+           `Total Employees` as total_employees
+        FROM `industry-employees`
+        GROUP BY Year, Industries
+        ORDER BY Year, total_employees
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
+
+
 
 
 if __name__ == "__main__":

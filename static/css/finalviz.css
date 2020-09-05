@@ -1,0 +1,25 @@
+#main_header {
+  text-align: center;
+  margin: 3rem auto;
+}
+.row {
+  margin: 1rem;
+}
+.col {
+  border-style: none;
+  border-width: .25px;
+  border-color: '#DBE4EE';
+}
+.st_selector {
+  margin: auto;
+  text-align: center;
+  padding: 1rem;
+  border: none;
+}
+
+.yr_selector {
+  margin: auto;
+  text-align: center;
+  padding: 1rem;
+  border: none;
+}

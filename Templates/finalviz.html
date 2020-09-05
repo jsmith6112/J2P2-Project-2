@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <!-- Responsive meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- stylesheet pariya.css -->
+  <link rel="stylesheet" href="../static/css/pariya.css">
+  <!-- Tab Name -->
+  <title>project viz</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- amcharts CDN -->
+  <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <!-- Plotly.js CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <!-- lodash.js CDN I'm not sure this is for WHAT? -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script> -->
+
+</head>
+
+
+<body>
+  <h1 id='main_header'>Project Viz</h1>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col st_selector">
+        <label for="st_selector">STATE :</label>
+        <select id='st_selector'>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="DC">District Of Columbia</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
+      </div>
+
+      <div class="col yr_selector">
+        <label for="yr_selector">YEAR :</label>
+        <select id="yr_selector">
+          <option value="2011">2011</option>
+          <option value="2012">2012</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+        </select>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col">
+        <div id="plot_pop"></div>
+      </div>
+
+      <div class="col">
+        <div id="plot_gdp"></div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col chart-display">
+        <div id="plot_inc_exp"></div>
+      </div>
+
+      <div class="col">
+        <div id="plot_jobs"></div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col chart-display">
+        <div id="plot_inc_exp"></div>
+      </div>
+
+      <div class="col">
+        <div id="plot_jobs"></div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col chart-display">
+        <div id="plot_total_employees"></div>
+      </div>
+
+      <div class="col">
+        <div id="plot_total_employees"></div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+  <!-- Main Container Closing Div -->
+  </div>
+
+
+
+  <!-- From .js files -->
+  <script src="../static/js/total_employees_byInd.js"></script>
+  <script src="../static/js/pop.js"></script>
+  <script src="../static/js/gdp.js"></script>
+  <script src="../static/js/inc_exp.js"></script>
+  <script src="../static/js/jobs_opened.js"></script>
+  <script src="../static/js/total_employees_byInd.js"></script>
+  <!-- <script src="lodash.js"></script> -->
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
+</html>
