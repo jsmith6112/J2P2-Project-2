@@ -167,7 +167,7 @@ def fy_state_approvals():
 
     print('---- TRYING TO OPEN FILE-----------')
 
-    with open('us-states-with-loan-data.json') as json_file:
+    with open('static/data/us-states-with-loan-data.json') as json_file:
         try:
             sba_json = json.load(json_file)
         except Exception as e:
@@ -368,7 +368,7 @@ def population_map():
 
     print('---- TRYING TO OPEN FILE-----------')
 
-    with open('state_population.json') as json_file:
+    with open('static/data/state_population.json') as json_file:
         try:
             sba_json = json.load(json_file)
         except Exception as e:
@@ -389,7 +389,7 @@ def gdp_map_fn():
 
     print('---- TRYIN   G TO OPEN FILE-----------')
 
-    with open('state_GDP.json') as json_file:
+    with open('static/data/state_GDP.json') as json_file:
         try:
             sba_json = json.load(json_file)
         except Exception as e:
@@ -410,7 +410,7 @@ def loan_to_all_demo():
 
     print('---- TRYING TO OPEN FILE-----------')
 
-    with open('reshaped_SBA_7A_Loan_Data.json') as json_file:
+    with open('static/data/reshaped_SBA_7A_Loan_Data.json') as json_file:
         try:
             sba_json = json.load(json_file)
         except Exception as e:
@@ -430,7 +430,7 @@ def gender_loan():
 
     print('---- TRYING TO OPEN FILE-----------')
 
-    with open('reshaped_SBA_7A_Loan_Data.json') as json_file:
+    with open('static/data/reshaped_SBA_7A_Loan_Data.json') as json_file:
         try:
             sba_json = json.load(json_file)
         except Exception as e:
@@ -450,7 +450,7 @@ def rural_urban_fn():
 
     print('---- TRYING TO OPEN FILE-----------')
 
-    with open('reshaped_SBA_7A_Loan_Data.json') as json_file:
+    with open('static/data/reshaped_SBA_7A_Loan_Data.json') as json_file:
         try:
             sba_json = json.load(json_file)
         except Exception as e:
