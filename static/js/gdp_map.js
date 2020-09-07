@@ -1,5 +1,5 @@
-// ---------- Map LOAN FREQUENCY by State ----------
-var myMap = L.map("map", {
+// ---------- Map GDP by State ----------
+var myMap = L.map("map_gdp", {
   center: [37.0902, -95.7777],
   zoom: 4
 });
@@ -16,10 +16,10 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 
 // Grab data with d3
-d3.json('/api/sba_by_state_approvals').then(function(data) {
+// d3.json('/pop_map').then(function(data) {
 
 // Grab data with d3
-// d3.json('/api/sba_by_state_approvals', function(data) {
+d3.json('/gdp_map', function(data) {
 
   console.log(data);
 
@@ -27,10 +27,10 @@ d3.json('/api/sba_by_state_approvals').then(function(data) {
   geojson = L.choropleth(data, {
 
     // Define what  property in the features to use
-    valueProperty: "gross_approval",
+    valueProperty: "total_GDP",
 
     // Set color scale
-    scale: ["#DE6E4B", "#3D5A80"],
+    scale: ["#7C3626", "#F5853F"],
 
     // Number of breaks in step range
     steps: 8,
@@ -48,7 +48,7 @@ d3.json('/api/sba_by_state_approvals').then(function(data) {
 
     onEachFeature: function(feature, layer) {
       layer.bindPopup("" + feature.properties.name + "<br><hr>" +
-        "$ " + feature.properties.gross_approval);
+        "$ " + feature.properties.total_GDP);
     }
 
 
@@ -67,7 +67,7 @@ d3.json('/api/sba_by_state_approvals').then(function(data) {
     var labels = [];
 
     // Add min & max
-    var legendInfo = "<h2>Gross Approval</h2>" +
+    var legendInfo = "<h2>State GDP (millions)</h2>" +
       "<div class=\"labels\">" +
         "<div class=\"min\">" + "$ " + limits[0] + "</div>" +
         "<div class=\"max\">" + "$ " + limits[limits.length - 1] + "</div>" +

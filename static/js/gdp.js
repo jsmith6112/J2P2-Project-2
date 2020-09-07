@@ -18,7 +18,7 @@ function init() {
     }];
 
     var layout = {
-      title: "Gross Domestic Products (GDP) Overtime",
+      title: "State Gross Domestic Products (GDP)",
       xaxis: {
         title: "Year"
       },

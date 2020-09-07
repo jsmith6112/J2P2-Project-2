@@ -10,6 +10,8 @@ function init() {
     var st = res.map(d => d.STATE)
 
     console.log(st);
+    console.log(inc);
+    console.log(exp);
 
     var trace1 = {
       'x': year,
@@ -17,7 +19,7 @@ function init() {
       'type': 'bar',
       'name': 'Income Per Capita',
       'marker': {
-        color: '#80475E'
+        color: '#FF8811'
       }
     };
 
@@ -27,7 +29,7 @@ function init() {
       'type': 'bar',
       'name': 'Personal Consumtion Expenditures Per Capita',
       'marker': {
-        color: '#C89B7B'
+        color: '#81ADC8'
       }
     };
 
@@ -68,7 +70,7 @@ function updateState() {
     var filtered_data = res.filter(d => d.STATE == selectedState);
 
     var year = filtered_data.map(d => d.Year);
-    var pop = filtered_data.map(d => d.inc_per_cap);
+    var inc = filtered_data.map(d => d.inc_per_cap);
     var exp = filtered_data.map(d => d.exp_per_cap)
 
     // var counts_sorted = counts.sort(function(a,b){return b-a});
@@ -84,16 +86,7 @@ function updateState() {
       type: 'bar',
       // orientation: 'h',
       marker:{
-        color: ['#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D',
-                '#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D']
+        color: '#FF8811'
       },
       text: year.map(String),
       textposition: 'auto'
@@ -106,17 +99,9 @@ function updateState() {
       type: 'bar',
       // orientation: 'h',
       marker:{
-        color: ['#721121',
-                '#A5402D',
-                '#F15156',
-                '#FFCF99',
-                '#FFC07F',
-                '#BDD358',
-                '#E5E059',
-                '#BBD8B3',
-                '#A29F15',
-                '#4F759B']
+        color: '#81ADC8'
       },
+      showlegend: true,
       text: year.map(String),
       textposition: 'auto'
 

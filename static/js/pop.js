@@ -6,7 +6,7 @@ function init() {
 
     var year = res.map(d => d.Year);
     var pop = res.map(d => d.Populations);
-    var st = res.map(d => d.STATE);
+    var st = res.map(d => d.STATE = ['Alabama']);
 
     console.log(st);
 
@@ -20,12 +20,12 @@ function init() {
     }];
 
     var layout = {
-      title: "Populations",
+      title: "State Populations",
       xaxis: {
         title: "Year"
       },
       yaxis: {
-        title: "Populations"
+        title: "Populations (millions)"
       }
     };
 

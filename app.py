@@ -161,7 +161,7 @@ def top_banks():
 
     return banks_json
 
-# ------------------------ MAP ENDPOINTS ------------------------------------
+# ------------------------ Total Loan Amount Map ENDPOINTS ------------------------------------
 @app.route("/api/sba_by_state_approvals")
 def fy_state_approvals():
 
@@ -202,9 +202,6 @@ def loan_freq():
 
     return sba_json
 
-
-# ------------------------ GDP by States ENDPOINTS ------------------------------------
-# removed OLD state GDP
 
 #-------------------------------SBA DATA BY YEAR FOR STATIC GRAPHH ON INDEX ------------------
 # API Route to add SBA Loan amount by year
@@ -285,16 +282,15 @@ def income_expense():
 
     query = '''
         SELECT
-	        `state-income`.Year,
+	       `state-income`.Year,
 	        `state-income`.STATE_FULL_NAME,
-            `state-income`.`Income Per Capita($)` as inc_per_cap,
-            `PCE-state`.`PCE Per Capita ($)` as exp_per_cap,
-            `state-income`.STATE
-
-        FROM `state-income`
-        LEFT JOIN `PCE-state`
-        ON `state-income`.STATE = `PCE-state`.STATE
-        GROUP BY Year, STATE_FULL_NAME;
+	        `state-income`.`Income Per Capita` as inc_per_cap,
+	        `PCE-state`.`PCE Per Capita` as exp_per_cap,
+	        `state-income`.STATE
+            FROM `state-income`
+            LEFT JOIN `PCE-state`
+            ON `state-income`.STATE = `PCE-state`.STATE
+            GROUP BY Year, STATE_FULL_NAME;
     '''
 
     sba_df = pd.read_sql(query, con=conn)
@@ -310,12 +306,12 @@ def gdp_by_state():
 
     query = '''
         SELECT
-	       Year,
-           STATE_FULL_NAME,
-           `GDP($M)` as GDP_millions,
-           STATE
-           FROM `state-gdp`
-           GROUP BY STATE_FULL_NAME, Year;
+	        Year,
+            STATE_FULL_NAME,
+            `GDP(millions)` as GDP_millions,
+            STATE
+        FROM `state-gdp`
+        GROUP BY STATE_FULL_NAME, Year
     '''
 
     sba_df = pd.read_sql(query, con=conn)
@@ -332,10 +328,10 @@ def pop_by_state():
     query = '''
         SELECT
 	       Year,
-           STATE_FULL_NAME,
-           Populations,
-           STATE
-        FROM `state-population`
+	        STATE_FULL_NAME,
+	        Populations,
+	        STATE
+        FROM `state-population-final`
         GROUP BY STATE_FULL_NAME, Year;
     '''
 
@@ -357,7 +353,7 @@ def emp_by_ind():
            `Total Employees` as total_employees
         FROM `industry-employees`
         GROUP BY Year, Industries
-        ORDER BY Year, total_employees
+        ORDER BY Year, total_employees DESC
     '''
 
     sba_df = pd.read_sql(query, con=conn)
@@ -365,6 +361,110 @@ def emp_by_ind():
     conn.close()
 
     return sba_json
+
+# ------------------------ POP MAP ENDPOINTS ------------------------------------
+@app.route("/pop_map")
+def population_map():
+
+    print('---- TRYING TO OPEN FILE-----------')
+
+    with open('state_population.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+
+    print('---- OPENED FILE-----------')
+
+    print('---- READY T RETURN -----------')
+
+    return jsonify(sba_json)
+
+
+# ------------------------ GDP MAP ENDPOINTS ------------------------------------
+@app.route("/gdp_map")
+def gdp_map_fn():
+
+    print('---- TRYIN   G TO OPEN FILE-----------')
+
+    with open('state_GDP.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+
+    print('---- OPENED FILE-----------')
+
+    print('---- READY T RETURN -----------')
+
+    return jsonify(sba_json)
+
+
+# ------------------------ Total All Demo Loan ENDPOINTS ------------------------------------
+@app.route("/loan_all_demographic")
+def loan_to_all_demo():
+
+    print('---- TRYING TO OPEN FILE-----------')
+
+    with open('reshaped_SBA_7A_Loan_Data.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+
+    print('---- OPENED FILE-----------')
+
+    print('---- READY T RETURN -----------')
+
+    return jsonify(sba_json)
+
+# -------------------- 2017 SB Owner Gender ENDPOINTS ----------------
+@app.route("/gender")
+def gender_loan():
+
+    print('---- TRYING TO OPEN FILE-----------')
+
+    with open('reshaped_SBA_7A_Loan_Data.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+
+    print('---- OPENED FILE-----------')
+
+    print('---- READY T RETURN -----------')
+
+    return jsonify(sba_json)
+
+# ------------------------ Rural v Urban ENDPOINTS ------------------------------------
+@app.route("/rural_urban")
+def rural_urban_fn():
+
+    print('---- TRYING TO OPEN FILE-----------')
+
+    with open('reshaped_SBA_7A_Loan_Data.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+
+    print('---- OPENED FILE-----------')
+
+    print('---- READY T RETURN -----------')
+
+    return jsonify(sba_json)
+
+
 
 
 

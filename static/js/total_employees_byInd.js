@@ -78,9 +78,9 @@ function updateState() {
     var emp_sorted = emp.sort(function(a,b){return b-a});
     var emp_top10 = emp_sorted.slice(0,10);
 
-    console.log(`TOP 10 FOR ${selectedState} ARE ${counts_top10}`);
+    console.log(`TOP 10 FOR ${selectedYear} ARE ${emp_top10}`);
     console.log(industry.slice(0,10));
-    console.log(counts_top10);
+    console.log(emp_top10);
 
     var trace = [{
       'y': industry,
