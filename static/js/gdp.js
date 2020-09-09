@@ -13,7 +13,10 @@ function init() {
       'y': st_gdp,
       'type': 'bar',
       'marker': {
-        color: '#B592A0'
+        color: ['#2A4C55', '#4D6F71', '#66827A',
+                '#99A88C', '#F0C977', '#E09F3E',
+                '#BF6535', '#9E2A2B', '#791B1D'
+              ]
       }
     }];
 
@@ -65,17 +68,11 @@ function updateState() {
       'y': st_gdp,
       type: 'bar',
       // orientation: 'h',
-      marker:{
-        color: ['#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D',
-                '#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D']
+      'marker': {
+        color: ['#2A4C55', '#4D6F71', '#66827A',
+                '#99A88C', '#F0C977', '#E09F3E',
+                '#BF6535', '#9E2A2B', '#791B1D'
+              ]
       },
       text: year.map(String),
       textposition: 'auto'

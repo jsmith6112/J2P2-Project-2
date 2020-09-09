@@ -1,98 +1,77 @@
-function init() {
+year = ['2014', '2015', '2016', '2017', '2018', '2019'];
 
-  var url = "/gender";
+femaleOwnedMoreThan50 = ['2,210,337,400.00',
+	                       '2,786,912,200.00',
+                         '3,022,707,143.00',
+                         '3,224,653,200.00',
+                         '3,105,068,600.00',
+                          '2,953,646,400.00'];
 
-  d3.json(url).then(function(res) {
+femaleOwnedLessThan50 = ['2,894,365,100.00',
+	                       '3,542,591,300.00',
+                         '3,421,359,800.00',
+                         '3,553,821,900.00',
+                         '3,514,247,000.00',
+                         '2,927,114,200.00'];
 
-    var group = res.map(d => d.Loan_Group = ['Female Owned more than 50%', 'Male Owned']);
-    var loanAmount = res.map(d => d.Loan_Amount);
-    var year = res.map(d => d.Year);
-
-    console.log(group);
-
-    var trace = [{
-      'x': group,
-      'y': loanAmount,
-      'type': 'bar',
-      'marker': {
-        color: [
-          '#054A91',
-          '#FF9B71'
-        ]
-      }
-    }];
-
-    var layout = {
-      title: "Female Owned 50% vs Male Owned Total Loan Amount in 2014-2019",
-      xaxis: {
-        title: "Owner Group"
-      },
-      yaxis: {
-        title: "Loan Amount"
-      }
-    };
-
-    var config = {
-      responsive: true
-    }
-
-    Plotly.newPlot("plot_gender", trace, layout, config);
-  });
-}
-init();
+maleOwned = ['11,878,294,300.00',
+             '15,038,658,800.00',
+             '14,898,774,200.00',
+             '16,070,989,000.00',
+             '16,264,964,400.00',
+             '14,993,005,700.00'];
 
 
-// On change function when select the dropdown filter
-d3.select('#yr_selector').on('change', updateYear());
+var trace3 = {
+  x: year,
+  y: femaleOwnedMoreThan50,
+  name: 'Female Owned More Than 50%',
+  type: 'bar',
+  textposition: 'auto',
+  marker: {
+    color: '#003554',
+    opacity: 0.6
+  }
+};
 
-function updateYear() {
+var trace2 = {
+  x: year,
+  y: femaleOwnedLessThan50,
+  name: 'Female Owned Less Than 50%',
+  type: 'bar',
+  textposition: 'auto',
+  marker: {
+    color: '#BF6535',
+    opacity: 0.6
+  }
+};
 
-  selectedYear = d3.select('#yr_selector').node().value
 
-  console.log(`selected year is ${selectedYear}`);
+var trace1 = {
+  x: year,
+  y: maleOwned,
+  name: 'Male Owned',
+  type: 'bar',
+  textposition: 'auto',
+  marker: {
+    color: '#2A4C55',
+    opacity: 0.6
+  }
+};
 
-  var url = "/gender";
-  d3.json(url).then(function(res) {
+var data = [trace1, trace2, trace3];
 
-    // Use filter() to filter yearly data
-    var filtered_data = res.filter(d => d.Year == selectedYear);
-
-    var group = filtered_data.map(d => d.Loan_Group = ['Female Owned more than 50%', 'Male Owned']);
-    var loanAmount = filtered_data.map(d => d.Loan_Amount);
-
-    // var emp_sorted = emp.sort(function(a,b){return b-a});
-    // var emp_top10 = emp_sorted.slice(0,10);
-    //
-    // console.log(`TOP 10 FOR ${selectedYear} ARE ${emp_top10}`);
-    // console.log(industry.slice(0,10));
-    // console.log(emp_top10);
-
-    var trace = [{
-      'x': group,
-      'y': loanAmount,
-      'type': 'bar',
-      'marker': {
-        color: [
-          '#054A91',
-          '#FF9B71'
-        ]
-      }
-    }];
-
-    var layout = {
-      title: "Female Owned 50% vs Male Owned Total Loan Amount in 2014-2019",
-      xaxis: {
-        title: "Owner Group"
-      },
-      yaxis: {
-        title: "Loan Amount"
+var layout = {
+      barmode: 'group',
+      legend: {
+        x: 1,
+        xanchor: 'right',
+        y: 1
       }
     };
 
-    var config = {
-      responsive: true
-    }
-
-    Plotly.react("plot_gender", trace, layout, config);
-  });
+var config = {
+  responsive: true
 }
+
+Plotly.newPlot('plot_gender', data, layout, config);

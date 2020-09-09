@@ -13,9 +13,13 @@ function init() {
     var trace = [{
       'x': year,
       'y': job_counts,
-      'type': 'bar',
+      'type': 'scatter',
+      'line': {
+        shape:'hv',
+        width: 3
+      },
       'marker': {
-        color: '#124E78'
+        color: '#9E2A2B'
       }
     }];
 
@@ -65,19 +69,13 @@ function updateState() {
     var trace = [{
       'x': year,
       'y': job_counts,
-      type: 'bar',
-      // orientation: 'h',
+      type: 'scatter',
+      line: {
+        shape:'hv',
+        width:3
+      },
       marker:{
-        color: ['#FC9F5B',
-                '#FBD1A2',
-                '#ECE4B7',
-                '#7DCFB6',
-                '#33CA7F',
-                '#2DC7FF',
-                '#00ABE7',
-                '#0081AF',
-                '#F17300',
-                '#054A91']
+        color: '#9E2A2B'
       },
       text: year.map(String),
       textposition: 'auto'

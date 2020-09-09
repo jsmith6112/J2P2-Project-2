@@ -10,6 +10,11 @@
   border-width: .25px;
   border-color: '#DBE4EE';
 }
+
+/* ------------------------------------------ */
+/* ---------------- SELECTORS ------------------ */
+/* ------------------------------------------ */
+
 .st_selector {
   margin: auto;
   text-align: center;
@@ -24,6 +29,55 @@
   border: none;
 }
 
+.no_of_emp {
+  padding-top: 4rem;
+  padding-left: 6rem;
+}
+
 .map_container {
   text-align: center;
 }
+
+/* ------------------------------------------ */
+/* ---------------- TABLES ------------------ */
+/* ------------------------------------------ */
+.td_num_value {
+  text-align: center;
+}
+
+.table th {
+    color: #124a91;
+    background-color: #dbe4ee;
+    border-color: #454d55;
+}
+
+#table_pct_guarant tr th {
+    text-align: center;
+    color: #F7F7F7;
+    background-color: #2A4C55;
+}
+
+#table_pct_guarant tbody {
+  background-color: #F7F7F7;
+}
+
+#pctGuarant_tableHeader {
+  padding-bottom: 1rem;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 300px;
+overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+display: block;
+}
+
+.sub_title {
+  font-size: 1.5rem;
+}
+/* ------------------------------------------ */
+/* ---------------- Donut ------------------ */
+/* ------------------------------------------ */

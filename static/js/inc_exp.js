@@ -9,27 +9,25 @@ function init() {
     var exp = res.map(d => d.exp_per_cap);
     var st = res.map(d => d.STATE)
 
-    console.log(st);
-    console.log(inc);
     console.log(exp);
 
     var trace1 = {
       'x': year,
       'y': inc,
-      'type': 'bar',
+      'type': 'line',
       'name': 'Income Per Capita',
       'marker': {
-        color: '#FF8811'
+        color: '#4D6F71'
       }
     };
 
     var trace2 = {
       'x': year,
       'y': exp,
-      'type': 'bar',
-      'name': 'Personal Consumtion Expenditures Per Capita',
+      'type': 'line',
+      'name': 'Expenses Per Capita',
       'marker': {
-        color: '#81ADC8'
+        color: '#BF6535'
       }
     };
 
@@ -43,7 +41,12 @@ function init() {
       yaxis: {
         title: "Income and Expenses"
       },
-      showlegend: true
+      showlegend: true,
+      legend: {
+        x: 1,
+        xanchor: 'right',
+        y: 1
+      }
     };
 
     var config = {responsive: true}
@@ -83,28 +86,21 @@ function updateState() {
     var trace1 = {
       'x': year,
       'y': inc,
-      type: 'bar',
-      // orientation: 'h',
-      marker:{
-        color: '#FF8811'
-      },
-      text: year.map(String),
-      textposition: 'auto'
-
+      'type': 'line',
+      'name': 'Income Per Capita',
+      'marker': {
+        color: '#4D6F71'
+      }
     };
 
     var trace2 = {
       'x': year,
       'y': exp,
-      type: 'bar',
-      // orientation: 'h',
-      marker:{
-        color: '#81ADC8'
-      },
-      showlegend: true,
-      text: year.map(String),
-      textposition: 'auto'
-
+      'type': 'line',
+      'name': 'Expenses Per Capita',
+      'marker': {
+        color: '#BF6535'
+      }
     };
 
     var data = [trace1,trace2]
@@ -117,6 +113,12 @@ function updateState() {
       yaxis: {
         title: "Income and Expenses",
         showticklabels: false
+      },
+      showlegend: true,
+      legend: {
+        x: 1,
+        xanchor: 'right',
+        y: 1
       }
     };
 

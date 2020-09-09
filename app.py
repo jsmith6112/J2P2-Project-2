@@ -34,12 +34,12 @@ app = Flask(__name__)
 
 engine = create_engine(f"mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_endpoint}/{remote_db_name}")
 
-# create route that renders index.html template
+# ==============================================================================
+# ------------------------- Render Webpages ENDPOINTS --------------------------
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# create route that renders about.html template
 @app.route("/about")
 def aboutPage():
     return render_template("about.html")
@@ -52,7 +52,9 @@ def learnMore():
 def final_viz():
     return render_template("finalviz.html")
 
-# API enpoint with ALL the Data
+
+# ==============================================================================
+# ------------- ALL Data in sba_loan_detail  ENDPOINTS -------------------------
 @app.route("/api/sba_loan_detail")
 def sba_startup():
     conn = engine.connect()
@@ -73,8 +75,8 @@ def sba_startup():
 
     return sba_json
 
-
-# Rouute that Groups data by both State and Business type. Route used for the horzonatal pargraph by type and State
+# ==============================================================================
+# ------------------- Business Types ENDPOINTS --------------------------
 @app.route("/api/business_type_state")
 def jobs_supported():
     conn = engine.connect()
@@ -103,7 +105,8 @@ def jobs_supported():
     return jobs_json
 
 
-# Used to group franchise and year
+# ==============================================================================
+# ------------------------ Franchises ENDPOINTS --------------------------------
 @app.route("/api/top_franchise")
 def top_franchise():
     conn = engine.connect()
@@ -133,7 +136,8 @@ def top_franchise():
     return franchise_json
 
 
-#Route for table of top banks
+# ==============================================================================
+# --------------------- Top Banks ENDPOINTS ------------------------------------
 @app.route("/api/top_banks")
 def top_banks():
     conn = engine.connect()
@@ -161,7 +165,9 @@ def top_banks():
 
     return banks_json
 
-# ------------------------ Total Loan Amount Map ENDPOINTS ------------------------------------
+
+# ==============================================================================
+# ------------------- Total Loan Amount Map ENDPOINTS --------------------------
 @app.route("/api/sba_by_state_approvals")
 def fy_state_approvals():
 
@@ -181,7 +187,9 @@ def fy_state_approvals():
 
     return jsonify(sba_json)
 
-# -------------------------- LOAN Frequency ENDPOINTS -------------------------
+
+# ==============================================================================
+# -------------------------- LOAN Frequency ENDPOINTS --------------------------
 @app.route("/loan_frequency")
 def loan_freq():
     conn = engine.connect()
@@ -203,8 +211,8 @@ def loan_freq():
     return sba_json
 
 
-#-------------------------------SBA DATA BY YEAR FOR STATIC GRAPHH ON INDEX ------------------
-# API Route to add SBA Loan amount by year
+# ==============================================================================
+#--------------------- Loan amount by year -------------------------------------
 @app.route("/api/sba_by_year")
 def sba_year():
     conn = engine.connect()
@@ -222,7 +230,9 @@ def sba_year():
     conn.close()
     return sbayear_json
 
-# ------------------------ BAR CHART RACE -----------------------------------
+
+# ==============================================================================
+# --------------------------- BAR CHART RACE -----------------------------------
 @app.route('/barchartrace_sample')
 def barchartrace():
     conn = engine.connect()
@@ -254,7 +264,9 @@ def barchartrace():
 
     return data_json
 
-# --------------- Number of Jobs by States ENDPOINTS ---------------
+
+# ==============================================================================
+# -------------------- Number of Jobs by States ENDPOINTS ----------------------
 @app.route("/jobs")
 def job_counts():
     conn = engine.connect()
@@ -275,7 +287,9 @@ def job_counts():
 
     return sba_json
 
-# --------------- Income and Expense ENDPOINTS ---------------
+
+# ==============================================================================
+# ---------------------- Income and Expense ENDPOINTS --------------------------
 @app.route("/inc_exp")
 def income_expense():
     conn = engine.connect()
@@ -287,10 +301,12 @@ def income_expense():
 	        `state-income`.`Income Per Capita` as inc_per_cap,
 	        `PCE-state`.`PCE Per Capita` as exp_per_cap,
 	        `state-income`.STATE
-            FROM `state-income`
-            LEFT JOIN `PCE-state`
-            ON `state-income`.STATE = `PCE-state`.STATE
-            GROUP BY Year, STATE_FULL_NAME;
+        FROM `state-income`
+        JOIN `PCE-state`
+        ON
+            `state-income`.STATE = `PCE-state`.STATE and `state-income`.Year = `PCE-state`.Year
+        GROUP BY
+            Year, STATE_FULL_NAME;
     '''
 
     sba_df = pd.read_sql(query, con=conn)
@@ -299,7 +315,9 @@ def income_expense():
 
     return sba_json
 
-# --------------- GDP by States ENDPOINTS ---------------
+
+# ==============================================================================
+# --------------------- GDP by States ENDPOINTS --------------------------------
 @app.route("/gdp")
 def gdp_by_state():
     conn = engine.connect()
@@ -320,7 +338,9 @@ def gdp_by_state():
 
     return sba_json
 
-# --------------- Populations ENDPOINTS ---------------
+
+# ==============================================================================
+# ------------------------- Populations ENDPOINTS ------------------------------
 @app.route("/pop")
 def pop_by_state():
     conn = engine.connect()
@@ -341,7 +361,9 @@ def pop_by_state():
 
     return sba_json
 
-# --------------- Total Employees by Industries ENDPOINTS --------------
+
+# ==============================================================================
+# --------------- Total Employees by Industries ENDPOINTS ----------------------
 @app.route("/employees_by_industry")
 def emp_by_ind():
     conn = engine.connect()
@@ -362,7 +384,9 @@ def emp_by_ind():
 
     return sba_json
 
-# ------------------------ POP MAP ENDPOINTS ------------------------------------
+
+# ==============================================================================
+# ------------------------ POP MAP ENDPOINTS -----------------------------------
 @app.route("/pop_map")
 def population_map():
 
@@ -383,7 +407,8 @@ def population_map():
     return jsonify(sba_json)
 
 
-# ------------------------ GDP MAP ENDPOINTS ------------------------------------
+# ==============================================================================
+# ------------------------ GDP MAP ENDPOINTS -----------------------------------
 @app.route("/gdp_map")
 def gdp_map_fn():
 
@@ -404,7 +429,31 @@ def gdp_map_fn():
     return jsonify(sba_json)
 
 
-# ------------------------ Total All Demo Loan ENDPOINTS ------------------------------------
+# ==============================================================================
+# ------------------------ Jobs Opening MAP ENDPOINTS -----------------------------------
+@app.route("/jobs_map")
+def jobs_map_fn():
+
+    print('---- TRYIN TO OPEN FILE-----------')
+
+    with open('static/data/state_employments.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+
+    print('---- OPENED FILE-----------')
+
+    print('---- READY T RETURN -----------')
+
+    return jsonify(sba_json)
+
+
+
+# ==============================================================================
+# ------------------------ Total All Demo Loan ENDPOINTS -----------------------
 @app.route("/loan_all_demographic")
 def loan_to_all_demo():
 
@@ -424,7 +473,9 @@ def loan_to_all_demo():
 
     return jsonify(sba_json)
 
-# -------------------- 2017 SB Owner Gender ENDPOINTS ----------------
+
+# ==============================================================================
+# -------------------- 2017 SB Owner Gender ENDPOINTS --------------------------
 @app.route("/gender")
 def gender_loan():
 
@@ -444,7 +495,9 @@ def gender_loan():
 
     return jsonify(sba_json)
 
-# ------------------------ Rural v Urban ENDPOINTS ------------------------------------
+
+# ==============================================================================
+# ------------------------ Rural v Urban ENDPOINTS -----------------------------
 @app.route("/rural_urban")
 def rural_urban_fn():
 
@@ -464,7 +517,31 @@ def rural_urban_fn():
 
     return jsonify(sba_json)
 
+# ==============================================================================
+# -------------------------- % SBA Guaranteed ENDPOINTS --------------------------
+@app.route("/pct_guaranteed")
+def percent_guaranteed():
+    conn = engine.connect()
 
+    query = '''
+        SELECT
+        	BorrState as State,
+        	NaicsDescription as industry,
+        	avg(GrossApproval) as loanAmount,
+            avg(SBAGuaranteedApproval) as guaranAmount,
+            format((SBAGuaranteedApproval/GrossApproval),2) as guaranPercent
+        FROM
+        	sba_loan_detail
+        GROUP BY
+        	BorrState,
+        	NaicsDescription
+    '''
+
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+
+    return sba_json
 
 
 

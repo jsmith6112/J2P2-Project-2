@@ -1,96 +1,56 @@
-function init() {
+year = ['2014', '2015', '2016', '2017', '2018', '2019'];
+rural = ['2,843,513,000.00',
+         '3,738,900,000.00',
+         '3,753,880,700.00',
+         '3,816,073,900.00',
+         '3,786,498,800.00',
+         '3,161,144,000.00'];
 
-  var url = "/rural_urban";
+urban = ['14,139,483,800.00',
+             '17,629,262,300.00',
+             '17,589,024,443.00',
+             '19,033,390,200.00',
+             '19,097,781,200.00',
+             '17,712,622,300.00'];
 
-  d3.json(url).then(function(res) {
+var trace1 = {
+  x: year,
+  y: urban,
+  name: 'Urban',
+  type: 'bar',
+  textposition: 'auto',
+  marker: {
+    color: '#E09F3E',
+    opacity: 0.6
+  }
+};
 
-    var area = res.map(d => d.Loan_Group = ['Rural', 'Urban']);
-    var loanAmount = res.map(d => d.Loan_Amount);
-    var year = res.map(d => d.Year);
+var trace2 = {
+  x: year,
+  y: rural,
+  name: 'Rural',
+  type: 'bar',
+  textposition: 'auto',
+  marker: {
+    color: '#00A6FB',
+    opacity: 0.6
+  }
+};
 
 
-    var trace = [{
-      'x': area,
-      'y': loanAmount,
-      'type': 'bar',
-      'marker': {
-        color: [
-          '#3E7CB1',
-          '#DBE4EE'
-        ]
-      }
-    }];
+var data = [trace1, trace2];
 
-    var layout = {
-      title: "Rural vs Urban Total Loan Amount in 2014-2019",
-      xaxis: {
-        title: "Area"
-      },
-      yaxis: {
-        title: "Loan Amount"
-      }
-    };
-
-    var config = {
-      responsive: true
-    }
-
-    Plotly.newPlot("plot_rural_urban", trace, layout, config);
-  });
-}
-init();
-
-// On change function when select the dropdown filter
-d3.select('#yr_selector').on('change', updateYear());
-
-function updateYear() {
-
-  selectedYear = d3.select('#yr_selector').node().value
-
-  console.log(`selected year is ${selectedYear}`);
-
-  var url = "/rural_urban";
-  d3.json(url).then(function(res) {
-
-    // Use filter() to filter yearly data
-    var filtered_data = res.filter(d => d.Year == selectedYear);
-
-    var area = filtered_data.map(d => d.Loan_Group = ['Rural', 'Urban']);
-    var loanAmount = filtered_data.map(d => d.Loan_Amount);
-
-    // var emp_sorted = emp.sort(function(a,b){return b-a});
-    // var emp_top10 = emp_sorted.slice(0,10);
-    //
-    // console.log(`TOP 10 FOR ${selectedYear} ARE ${emp_top10}`);
-    // console.log(industry.slice(0,10));
-    // console.log(emp_top10);
-
-    var trace = [{
-      'x': area,
-      'y': loanAmount,
-      'type': 'bar',
-      'marker': {
-        color: [
-          '#3E7CB1',
-          '#DBE4EE'
-        ]
-      }
-    }];
-
-    var layout = {
-      title: "Rural vs Urban Total Loan Amount in 2014-2019",
-      xaxis: {
-        title: "Area"
-      },
-      yaxis: {
-        title: "Loan Amount"
+var layout = {
+      barmode: 'group',
+      legend: {
+        x: 1,
+        xanchor: 'right',
+        y: 1
       }
     };
 
-    var config = {
-      responsive: true
-    }
-
-    Plotly.react("plot_rural_urban", trace, layout, config);
-  });
+var config = {
+  responsive: true
 }
+
+Plotly.newPlot('plot_rural_urban', data, layout, config);

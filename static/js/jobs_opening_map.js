@@ -1,5 +1,5 @@
 // ---------- Map POPULATIONS by State ----------
-var myMap = L.map("map_pop", {
+var myMap = L.map("map_jobs", {
   center: [37.0902, -95.7777],
   zoom: 4
 });
@@ -19,7 +19,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // d3.json('/pop_map').then(function(data) {
 
 // Grab data with d3
-d3.json('/jobs_map', function(data) {
+d3.json('/pop_map', function(data) {
 
   console.log(data);
 
@@ -27,10 +27,10 @@ d3.json('/jobs_map', function(data) {
   geojson = L.choropleth(data, {
 
     // Define what  property in the features to use
-    valueProperty: "total_employments",
+    valueProperty: "total_populations",
 
     // Set color scale
-    scale: ["#ED6A5A", "#9BC1BC"],
+    scale: ["#628395", "#DBAD6A"],
 
     // Number of breaks in step range
     steps: 8,
@@ -48,7 +48,7 @@ d3.json('/jobs_map', function(data) {
 
     onEachFeature: function(feature, layer) {
       layer.bindPopup("" + feature.properties.name + "<br><hr>" +
-        "$ " + feature.properties.total_employments);
+        "$ " + feature.properties.total_populations);
     }
 
 
@@ -67,7 +67,7 @@ d3.json('/jobs_map', function(data) {
     var labels = [];
 
     // Add min & max
-    var legendInfo = "<h2>Total Employments Opening</h2>" +
+    var legendInfo = "<h2>Populations</h2>" +
       "<div class=\"labels\">" +
         "<div class=\"min\">" + "$ " + limits[0] + "</div>" +
         "<div class=\"max\">" + "$ " + limits[limits.length - 1] + "</div>" +

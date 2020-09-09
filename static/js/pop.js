@@ -6,16 +6,16 @@ function init() {
 
     var year = res.map(d => d.Year);
     var pop = res.map(d => d.Populations);
-    var st = res.map(d => d.STATE = ['Alabama']);
+    var st = res.map(d => d.STATE);
 
     console.log(st);
 
     var trace = [{
       'x': year,
       'y': pop,
-      'type': 'bar',
+      'type': 'line',
       'marker': {
-        color: '#9C7178'
+        color: '#E09F3E'
       }
     }];
 
@@ -36,8 +36,8 @@ function init() {
 }
 init();
 
-
-// On change function when select the dropdown filter
+//======================================================================
+//---------- On change function when select the dropdown filter---------
 d3.select('#st_selector').on('change', updateState);
 
 function updateState() {
@@ -65,20 +65,11 @@ function updateState() {
     var trace = [{
       'x': year,
       'y': pop,
-      type: 'bar',
+      type: 'line',
       // orientation: 'h',
       marker:{
-        color: ['#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D',
-                '#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D']
-      },
+              color: '#E09F3E'
+              },
       text: year.map(String),
       textposition: 'auto'
 

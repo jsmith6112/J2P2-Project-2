@@ -11,8 +11,6 @@ function init() {
     var emp_sorted = emp.sort(function(a,b){return b-a});
     var emp_top10 = emp_sorted.slice(0,10);
 
-    console.log(year.slice(0,10));
-    console.log(industry.slice(0,10));
     console.log(emp_top10);
 
     var trace = [{
@@ -88,16 +86,18 @@ function updateState() {
       type: 'bar',
       orientation: 'h',
       marker:{
-        color: ['#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D',
-                '#738396',
-                '#4ECDC4',
-                '#BB7E8C',
-                '#FF6B6B',
-                '#FFE66D']
+        color: [
+                '#054A91',
+                '#3E7CB1',
+                '#81A4CD',
+                '#DBE4EE',
+                '#FF9B71',
+                '#054A91',
+                '#3E7CB1',
+                '#81A4CD',
+                '#DBE4EE',
+                '#FF9B71'
+              ]
       },
       text: industry.map(String),
       textposition: 'auto'
