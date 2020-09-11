@@ -17,6 +17,9 @@ from flask import (
     redirect)
 
 from sqlalchemy import func, create_engine
+is_heroku = False
+if 'IS_HEROKU' in os.environ:
+    is_heroku = True
 
 # Import your config file(s) and variable(s)
 if is_heroku == False:
@@ -323,6 +326,124 @@ def avgIntRate():
     avg_int_rate_json = avg_int_rate_df.to_json(orient='records')
     conn.close()
     return avg_int_rate_json 
+
+# ==============================================================================
+# ------------------------ STATIC GRAPHS ON TREND.HTML ENDPOINT -----------------------------
+@app.route("/api/race_demographics")
+def ace_demographics():
+    with open('static/data/reshaped_SBA_7A_Loan_Data.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print(e)
+        print(sba_json)
+   
+    return jsonify(sba_json)
+
+
+# ==============================================================================
+# ------------------------- Populations ENDPOINTS ------------------------------
+@app.route("/pop")
+def pop_by_state():
+    conn = engine.connect()
+    query = '''
+        SELECT
+	       Year,
+	        STATE_FULL_NAME,
+	        Populations,
+	        STATE
+        FROM `state-population-final`
+        GROUP BY STATE_FULL_NAME, Year;
+    '''
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+    return sba_json
+
+# ==============================================================================
+# --------------------- GDP by States ENDPOINTS --------------------------------
+@app.route("/gdp")
+def gdp_by_state():
+    conn = engine.connect()
+    query = '''
+        SELECT
+	        Year,
+            STATE_FULL_NAME,
+            `GDP(millions)` as GDP_millions,
+            STATE
+        FROM `state-gdp`
+        GROUP BY STATE_FULL_NAME, Year
+    '''
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+    return sba_json
+
+# ==============================================================================
+# ---------------------- Income and Expense ENDPOINTS --------------------------
+@app.route("/inc_exp")
+def income_expense():
+    conn = engine.connect()
+    query = '''
+        SELECT
+	       `state-income`.Year,
+	        `state-income`.STATE_FULL_NAME,
+	        `state-income`.`Income Per Capita` as inc_per_cap,
+	        `PCE-state`.`PCE Per Capita` as exp_per_cap,
+	        `state-income`.STATE
+        FROM `state-income`
+        JOIN `PCE-state`
+        ON
+            `state-income`.STATE = `PCE-state`.STATE and `state-income`.Year = `PCE-state`.Year
+        GROUP BY
+            Year, STATE_FULL_NAME;
+    '''
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+    return sba_json
+
+# ==============================================================================
+# -------------------- Number of Jobs by States ENDPOINTS ----------------------
+@app.route("/jobs")
+def job_counts():
+    conn = engine.connect()
+    query = '''
+        SELECT
+	        Year,
+            STATE_FULL_NAME,
+            `Total Employments` as total_employments,
+            STATE
+        FROM `sba-schema`.`state-employment`
+        GROUP BY STATE, Year;
+    '''
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+    return sba_json
+
+# ==============================================================================
+# -------------------------- PCT SBA Guaranteed ENDPOINTS --------------------------
+@app.route("/pct_guaranteed")
+def percent_guaranteed():
+    conn = engine.connect()
+    query = '''
+        SELECT
+        	BorrState as State,
+        	NaicsDescription as industry,
+        	avg(GrossApproval) as loanAmount,
+            avg(SBAGuaranteedApproval) as guaranAmount,
+            format((SBAGuaranteedApproval/GrossApproval),2) as guaranPercent
+        FROM
+        	sba_loan_detail
+        GROUP BY
+        	BorrState,
+        	NaicsDescription
+    '''
+    sba_df = pd.read_sql(query, con=conn)
+    sba_json = sba_df.to_json(orient='records')
+    conn.close()
+    return sba_json
 
 
 if __name__ == "__main__":
