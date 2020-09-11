@@ -21,47 +21,26 @@ app = Flask(__name__)
 
 engine = create_engine(f"mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_endpoint}/{remote_db_name}")
 
-# create route that renders index.html template
+# create route that renders ALL template
 @app.route("/")
 def home():
     return render_template("index.html")
-
-# create route that renders about.html template
 @app.route("/about")
 def aboutPage():
     return render_template("about.html")
-
 @app.route("/learn-more")
 def learnMore():
     return render_template("learn-more.html")
+@app.route("/trends")
+def trends():
+    return render_template("trends.html")
 
-# API enpoint with ALL the Data
-@app.route("/api/sba_loan_detail")
-def sba_startup():
-    conn = engine.connect()
-
-    query = '''
-        SELECT
-            *
-        FROM
-            sba_loan_detail
-        Limit 10000
-    '''
-
-    sba_df = pd.read_sql(query, con=conn)
-
-    sba_json = sba_df.to_json(orient='index')
-
-    conn.close()
-
-    return sba_json
 
 
 # Rouute that Groups data by both State and Business type. Route used for the horzonatal pargraph by type and State
 @app.route("/api/business_type_state")
 def jobs_supported():
     conn = engine.connect()
-
     query = '''
        SELECT
             BusinessType
@@ -76,13 +55,9 @@ def jobs_supported():
         ORDER BY
 	        BorrState
     '''
-
     jobs_df = pd.read_sql(query, con=conn)
-
     jobs_json = jobs_df.to_json(orient='records')
-
     conn.close()
-
     return jobs_json
 
 
@@ -106,13 +81,9 @@ def top_franchise():
             GrossApproval DESC
         LIMIT 10
     '''
-
     franchise_df = pd.read_sql(query, con=conn)
-
     franchise_json = franchise_df.to_json(orient='records')
-
     conn.close()
-
     return franchise_json
 
 
@@ -185,11 +156,7 @@ def st_gdp():
 
     return jsonify(st_json)
 
-@app.route("/")
-def test():
-    return render_template("test.html")
-
-#-------------------------------SBA DATA BY YEAR FOR STATIC GRAPHH ON INDEX ------------------
+#-------------------------------SBA DATA BY YEAR FOR STATIC GRAPH ON INDEX ------------------
 # API Route to add SBA Loan amount by year
 @app.route("/api/sba_by_year")
 def sba_year():
@@ -239,6 +206,112 @@ def barchartrace():
         json.dump(data_dict, json_file)
     
     return data_json
+
+
+# ------------------ POPULATION END POINT ------------------------------------
+@app.route('/api/population')
+def population():
+    conn = engine.connect()
+
+    query = '''
+           SELECT 
+                STATE,
+                FORMAT(Populations,0) AS Populations
+            FROM 
+                `sba-schema`.`state-population-final`
+            WHERE
+                Year = '2019'       
+    '''
+
+    population_df = pd.read_sql(query, con=conn)
+    population_json = population_df.to_json(orient='records')
+    conn.close()
+    return population_json
+
+# ------------------ WOMEN OWNED BIZ END POINT ------------------------------------
+@app.route('/api/women_owned')
+def womenBiz():
+    conn = engine.connect()
+
+    query = '''
+           SELECT 
+                *
+            FROM 
+                `sba-schema`.women_census_view      
+    '''
+
+    women_df = pd.read_sql(query, con=conn)
+    women_json = women_df.to_json(orient='records')
+    conn.close()
+    return women_json
+
+# ------------------ VET OWNED BIZ END POINT ------------------------------------
+@app.route('/api/vet_owned')
+def vetBiz():
+    conn = engine.connect()
+
+    query = '''
+           SELECT 
+                *
+            FROM 
+                `sba-schema`.vet_census_view     
+    '''
+
+    vet_df = pd.read_sql(query, con=conn)
+    vet_json = vet_df.to_json(orient='records')
+    conn.close()
+    return vet_json
+
+# ------------------ VET OWNED BIZ END POINT ------------------------------------
+@app.route('/api/minority_owned')
+def minorityBiz():
+    conn = engine.connect()
+
+    query = '''
+           SELECT 
+                *
+            FROM 
+                `sba-schema`.Minority_census_view     
+    '''
+
+    minority_df = pd.read_sql(query, con=conn)
+    minority_json = minority_df.to_json(orient='records')
+    conn.close()
+    return minority_json
+
+# ------------------AVG AMOUNG GIVEN END POINT ------------------------------------
+@app.route('/api/avg_loan_amount')
+def avgLoanAmount():
+    conn = engine.connect()
+
+    query = '''
+           SELECT 
+                *
+            FROM 
+                `sba-schema`.AvgLoanGiven     
+    '''
+
+    avg_loan_df = pd.read_sql(query, con=conn)
+    avg_loan_json = avg_loan_df.to_json(orient='records')
+    conn.close()
+    return avg_loan_json 
+
+# ------------------AVG INTEREST RATE END POINT ------------------------------------
+@app.route('/api/avg_int_rate')
+def avgIntRate():
+    conn = engine.connect()
+
+    query = '''
+           SELECT 
+                *
+            FROM 
+                `sba-schema`.AvgInterestRate     
+    '''
+
+    avg_int_rate_df = pd.read_sql(query, con=conn)
+    avg_int_rate_json = avg_int_rate_df.to_json(orient='records')
+    conn.close()
+    return avg_int_rate_json 
 
 
 if __name__ == "__main__":

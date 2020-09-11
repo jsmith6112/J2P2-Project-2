@@ -1,0 +1,141 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learn More</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <!-- James Add sbastlyes below-->
+    <link rel="stylesheet" href="../css/sbastyles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sbastyles.css') }}">
+    <!--USE THIS PATH ONCE DEPLOYED TO HEROKU-->
+    <link rel="stylesheet" href= "../css/stylesheet.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script>  -->
+</head>
+
+<body>
+ <!--NAVIGATION BAR -->
+ <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #485c7f;">
+    <a class="navbar-brand" href="../Templates/index.html">Small Business Administration</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="../Templates/index.html"> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Templates/learn-more.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Templates/trends.html">Trends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Templates/about.html">About</a>
+        </li>        
+      </ul>
+    </div>
+  </nav>
+   <!--END OF NAVIGATION BAR -->
+
+ <!-- Page Content -->
+<div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-2">SMALL BUSINESS ADMNISTRATION: LENDING TRENDS
+    </h1>
+  
+    <!-- Portfolio Item Row 1 -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="container">
+                <button>Stop</button>
+                <svg id="bar-chart-race">
+                    <g class="chart-container">
+                        <text class="chart-title"></text>
+                        <g class="x-axis"></g>
+                        <g class="y-axis"></g>
+                        <g class="columns"></g>
+                        <text class="current-date"></text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3 class="my-3">TOP INDUSTRIES </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+        </div>
+    </div>
+      <!-- END Portfolio Item Row 1 -->
+  
+      <!-- Portfolio Item Row 2 -->
+      <div class="row">
+        <div class="col-md-4">
+          <h3 class="my-3">TOP FRANCHISES</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+        </div>
+        <div class="col-md-8">
+          <canvas id="myChart" width="200" height="70px"></canvas>
+        </div>
+      </div>
+        <!-- END Portfolio Item Row 2 -->
+  
+  
+        <!-- Portfolio Item Row 3 -->
+        <div class="row">
+          <div class="col-md-8">
+            <div>THIS WHERE I WILL PUT JAME'S INTERACTIVE MAP</div>
+            <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+          </div>
+          <div class="col-md-4">
+            <h3 class="my-3">TOP INDUSTRIES </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+            </div>
+          </div>
+          <!-- END Portfolio Item Row 3 -->
+  
+  
+          <!-- Portfolio Item Row 4 -->
+          <div class="row">
+            <div class="col-md-4">
+              <h3 class="my-3">SOME HEADER </h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+            </div>
+            <div class="col-md-8">
+              <div>THIS WHERE 1 CENSUS GRAPH WILL GO </div>
+              <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+            </div>
+          </div>
+     <!-- END Portfolio Item Row 4 -->        
+          
+   </div>
+
+
+  <!--UNCOMMENT ONCE IN HEROKU-->
+  <script src="../js/app.js"></script>
+  <script src="../js/map.js"></script>
+  <script src="../js/choropleth.js"></script>
+  <script src="../js/industry_class.js"></script>
+    <!-- PATHS FOR TESTING LOCALLY-->
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+  <script src="{{url_for('static', filename='js/config.js')}}"></script>
+  <script src="{{url_for('static', filename='js/map.js')}}"></script>
+  <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/industry_class.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/index.js')}}"></script>
+</div>
+</body>
+</html>
