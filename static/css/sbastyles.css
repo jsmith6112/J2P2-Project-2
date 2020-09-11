@@ -5,8 +5,8 @@ body {
 }
 
 button {
-  width: 80px;
-  height: 30px;
+  width: 120px;
+  height: 2.5rem;
   border-radius: 4px;
   box-shadow: none;
   outline: none;
@@ -15,10 +15,16 @@ button {
 
 svg {
   margin: 40px;
+  padding: auto;
+}
+
+#bar-chart-race {
+  background-color: #F1EEE8;
+  opacity: 0.95;
 }
 
 .chart-container .chart-title {
-  font-size: 18px;
+  font-size: 1.5rem;
   fill: #212529;
   font-weight: bold;
   text-anchor: middle;
@@ -26,9 +32,12 @@ svg {
 }
 
 .chart-container .current-date {
-  font-size: 45px;
-  fill: #212529;
+  font-size: 3.5rem;
+  font-weight: normal;
+  fill: #EDB763;
+  opacity: 0.8;
   text-anchor: end;
+  text-shadow: 1px 1px #CFDFEC;
 }
 
 .y-axis text,
@@ -51,7 +60,7 @@ svg {
 
 .columns .column-container .column-title {
   text-anchor: end;
-  fill: white;
+  fill:#F1EEE8;
   dominant-baseline: middle;
   font-size: 12px;
 }
@@ -59,4 +68,8 @@ svg {
 .columns .column-container .column-value {
   dominant-baseline: middle;
   font-size: .04px;
+}
+.sub-header{
+  color:#B45753;
+  text-align: center;
 }

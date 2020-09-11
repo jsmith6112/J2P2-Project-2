@@ -52,87 +52,251 @@
    <!--END OF NAVIGATION BAR -->
 
  <!-- Page Content -->
-<div class="container">
-
-    <!-- Portfolio Item Heading -->
-    <h1 class="my-2">SMALL BUSINESS ADMNISTRATION: LENDING TRENDS
-    </h1>
-  
-    <!-- Portfolio Item Row 1 -->
-    <div class="row">
-        <div class="col-md-8">
-            <div class="container">
-                <button>Stop</button>
-                <svg id="bar-chart-race">
-                    <g class="chart-container">
-                        <text class="chart-title"></text>
-                        <g class="x-axis"></g>
-                        <g class="y-axis"></g>
-                        <g class="columns"></g>
-                        <text class="current-date"></text>
-                    </g>
-                </svg>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <h3 class="my-3">TOP INDUSTRIES </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-        </div>
-    </div>
-      <!-- END Portfolio Item Row 1 -->
-  
-      <!-- Portfolio Item Row 2 -->
+<div class="container-fluid">
+      <!-- ROW OF 3 CENSUS GRAPHS -->
       <div class="row">
         <div class="col-md-4">
-          <h3 class="my-3">TOP FRANCHISES</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+          <div id=plot_gender></div>
         </div>
-        <div class="col-md-8">
-          <canvas id="myChart" width="200" height="70px"></canvas>
+        <br><br><br>
+        <div class="col-md-4">
+          <div id = plot_loan_all_demo></div>
         </div>
-      </div>
-        <!-- END Portfolio Item Row 2 -->
-  
-  
-        <!-- Portfolio Item Row 3 -->
-        <div class="row">
-          <div class="col-md-8">
-            <div id=plot_gender></div>
-          </div>
-          <div class="col-md-4">
-            <h3 class="my-3">TOP INDUSTRIES </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-            </div>
-          </div>
-          <!-- END Portfolio Item Row 3 -->
-  
-  
-          <!-- Portfolio Item Row 4 -->
-          <div class="row">
-            <div class="col-md-4">
-              <h3 class="my-3">SOME HEADER </h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-            </div>
-            <div class="col-md-8">
-              <div id = plot_loan_all_demo></div>
-            </div>
-          </div>
-     <!-- END Portfolio Item Row 4 -->     
-     
-     
-      <!-- Portfolio Item Row 5 -->
-      <div class="row">
-        <div class="col-md-8">
+        <br><br><br>
+        <div class="col-md-4">
           <div id=plot_rural_urban></div>
         </div>
-        <div class="col-md-4">
-          <h3 class="my-3">SOME HEADER </h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-          </div>
+    </div>
+   <!-- ROW OF 3 CENSUS GRAPHS -->
+
+ <!-- BUSINESS DEMOGRAPHICS WRITE UP -->
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    
+      <div class="col-md-8">
+        <br><br>
+        <h3 class="header">BUSINESS OWNERS DEMOGRAPHCS</h3>
+        <p>The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. The ABS is conducted jointly by the U.S. Census Bureau and the National Center for Science and Engineering Statistics within the National Science Foundation. 
+          The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&D and Innovation Survey (BRDI-S). 
+          The data are compiled by combining data collected on businesses and business owners in the ABS with data collected on the economic census and administrative records. Business ownership is defined as havingmore than 50% of the stock or equity in the business and is categorized by </p>
+          <br>
+          <ul>
+            <li>Sex: Male; female; or equally male/female</li>
+            <li>Ethnicity: Hispanic; equally Hispanic/non-Hispanic; non-Hispanic</li>
+            <li>Race: White; Black or African American; American Indian or Alaska Native;Asian; Native Hawaiian or Other Pacific Islander; minority; equally minority/nonminority; nonminority</li>
+            <li>Veteran status: Veteran; equally veteran/nonveteran; nonveteran</li>
+            <li>Publicly held and other firms not classifiable by sex, ethnicity, race, and veteran status</li>
+          </ul>
+          <br>
+           <p>Firms equally male-/female-owned, equally minority-/nonminorityowned, and equally veteran-/nonveteran-owned are counted andtabulated as separate categories.</p>       
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+  <!-- END OF BUSINESS DEMOGRAPHICS WRITE UP -->
+  <br>
+   <!-- TOP BORROWERS WRITE UP -->
+   <div class="row">
+    <div class="col-md-2">
+    </div>
+    
+      <div class="col-md-8">
+        <h3 class="header">TOP BORROWERS</h3>
+        <h6 class="sub-header">Loan by Industry: Funding Volume 2012 to 2020</h6>
+        <p>To delve into who is receiving SBA 7(a) loans by industry, we considered which industriesreceived the highest amount of SBA loan dollars between 2012 and 2018. 
+          This was determined by evaluating the cumulative loan approval amount for each industry during this time period. 
+          Based on this data, hotels and motels received the most SBA loan funding between 2012 and 2018. 
+          The average loan size for hotels is $1,400,732,000 compared to the average SBA 7(a) loan amount of $425,500.</p>
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+  <!-- END OF TOP BORROWERS WRITE UP -->
+
+<!-- FOURTH ROW -- BAR CHART RACE AND TOP FRANCHISES-->
+    <div class="row">
+        <div class="col-md-6">
+            <svg id="bar-chart-race">
+                <g class="chart-container">
+                    <text class="chart-title"></text>
+                    <g class="x-axis"></g>
+                    <g class="y-axis"></g>
+                    <g class="columns"></g>
+                    <text class="current-date"></text>
+                </g>
+            </svg>
         </div>
-        <!-- END Portfolio Item Row 5 -->
+        <div class="col-md-6">
+          <canvas id="myChart" width="200" height="70px"></canvas>
+        </div>
+    </div>
+<!-- FOURTH ROW -- BAR CHART RACE AND TOP FRANCHISES-->
           
-   </div>
+<!---TABELS -->
+
+<!--FORTH ROW OF 2-->    
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <h3 class="sub_title">SBA Percent Guaranteed Small Business Loan</h3>
+    <label for="state_selector-2">STATE :</label>
+    <select id='state_selector-2'>
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option>
+      <option value="CA">California</option>
+      <option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option>
+      <option value="DE">Delaware</option>
+      <option value="DC">District Of Columbia</option>
+      <option value="FL">Florida</option>
+      <option value="GA">Georgia</option>
+      <option value="HI">Hawaii</option>
+      <option value="ID">Idaho</option>
+      <option value="IL">Illinois</option>
+      <option value="IN">Indiana</option>
+      <option value="IA">Iowa</option>
+      <option value="KS">Kansas</option>
+      <option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option>
+      <option value="ME">Maine</option>
+      <option value="MD">Maryland</option>
+      <option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option>
+      <option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option>
+      <option value="MT">Montana</option>
+      <option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option>
+      <option value="NH">New Hampshire</option>
+      <option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option>
+      <option value="NY">New York</option>
+      <option value="NC">North Carolina</option>
+      <option value="ND">North Dakota</option>
+      <option value="OH">Ohio</option>
+      <option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option>
+      <option value="PA">Pennsylvania</option>
+      <option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option>
+      <option value="SD">South Dakota</option>
+      <option value="TN">Tennessee</option>
+      <option value="TX">Texas</option>
+      <option value="UT">Utah</option>
+      <option value="VT">Vermont</option>
+      <option value="VA">Virginia</option>
+      <option value="WA">Washington</option>
+      <option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option>
+      <option value="WY">Wyoming</option>
+    </select>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table id="table_pct_guarant" class="table table-hover table-sm mb-0">
+        <thead>
+          <tr>
+            <th id="pctGuarant_tableHeader">Small Business Industry</th>
+            <!-- <th>Approved Loan Amount</th> -->
+            <!-- <th>Guaranteed Amount</th> -->
+            <th>SBA % of Guaranty</th>
+          </tr>
+        </thead>
+        <tbody id='table_pct_top_guarant'></tbody>
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="col-xs-12 col-sm-6">
+    <h3 class="sub_title">Loan Approval Banks</h3>
+    <label for="state_selector_b">STATE :</label>
+    <select id='state_selector_b'>
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option>
+      <option value="CA">California</option>
+      <option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option>
+      <option value="DE">Delaware</option>
+      <option value="DC">District Of Columbia</option>
+      <option value="FL">Florida</option>
+      <option value="GA">Georgia</option>
+      <option value="HI">Hawaii</option>
+      <option value="ID">Idaho</option>
+      <option value="IL">Illinois</option>
+      <option value="IN">Indiana</option>
+      <option value="IA">Iowa</option>
+      <option value="KS">Kansas</option>
+      <option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option>
+      <option value="ME">Maine</option>
+      <option value="MD">Maryland</option>
+      <option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option>
+      <option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option>
+      <option value="MT">Montana</option>
+      <option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option>
+      <option value="NH">New Hampshire</option>
+      <option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option>
+      <option value="NY">New York</option>
+      <option value="NC">North Carolina</option>
+      <option value="ND">North Dakota</option>
+      <option value="OH">Ohio</option>
+      <option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option>
+      <option value="PA">Pennsylvania</option>
+      <option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option>
+      <option value="SD">South Dakota</option>
+      <option value="TN">Tennessee</option>
+      <option value="TX">Texas</option>
+      <option value="UT">Utah</option>
+      <option value="VT">Vermont</option>
+      <option value="VA">Virginia</option>
+      <option value="WA">Washington</option>
+      <option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option>
+      <option value="WY">Wyoming</option>
+    </select>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table id="bank-table" class="table table-hover table-sm mb-0">
+        <thead>
+          <tr>
+            <th>Bank Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Average Loan Approval</th>
+          </tr>
+        </thead>
+        <tbody id='bank-tbody'></tbody>
+      </table>
+    </div>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+     
+<!--END FOURTH ROW OF 2--> 
+
+
+
+
+
+
+
+
+
+
+
+</div>
 
   
   <!--UNCOMMENT ONCE IN HEROKU-->
@@ -151,6 +315,5 @@
   <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
   <script src="{{ url_for('static', filename='js/industry_class.js')}}"></script>
   <script src="{{ url_for('static', filename='js/index.js')}}"></script>
-</div>
 </body>
 </html>

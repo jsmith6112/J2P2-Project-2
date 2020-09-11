@@ -4,7 +4,7 @@ function Businesstypes() {
   d3.json(url).then(function (response) {
 
     var bizType = response.map(business => business.BusinessType);
-    var approve = response.map(approval => approval.GrossApproval);
+    var approve = [1439446073,21186757,163096600];
 
     var trace = [{
       'y': bizType,
@@ -14,7 +14,7 @@ function Businesstypes() {
       textposition: 'auto',
       orientation: 'h',
       marker: {
-        color: 'rgb(72, 92, 127)',
+        color: '#495577',
         opacity: 0.8
       }
     }];
@@ -378,6 +378,7 @@ function updatePopulation() {
   var banksurl = "/api/top_banks";
   var bizTypeUrl = "/api/business_type_state";
   var gdpUrl = "/gdp";
+  var incExpUrl ="/inc_exp";
   
 
   /* UPDATES POPULATION TEXT NUMBER ON DASHBOARD */
@@ -544,7 +545,7 @@ function updatePopulation() {
   });
 
 // UPDATES PCE GRAPH ////////
-  d3.json(incExpUrl).then(function(res) {
+  d3.json(incExpUrl).then(function(res){
     var filtered_data = res.filter(d => d.STATE == state);
     var year = filtered_data.map(d => d.Year);
     var inc = filtered_data.map(d => d.inc_per_cap);

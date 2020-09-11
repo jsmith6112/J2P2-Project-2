@@ -71,12 +71,12 @@ var layout = {
     xanchor: 'right',
     y: 1
   },
-  title: "Total Loan Amount in Business Owner Gender Group 2014-2019",
+  title: "Total Loan Amount by Gender 2014-2019",
   xaxis: {
     title: "Year"
   },
   yaxis: {
-    title: "Loan Amount (billions)"
+    title: "Loan Amount(B)"
   }
 };
 
@@ -118,7 +118,7 @@ var demoColor = [
   }];
   
   var layout = {
-    title: 'Demographic Group vs Total Loan Amount (millions) 2014-2019',
+    title: 'Total Loan Amount by Ethnicity 2014-2019',
     annotations: [{
       font: {
         size: 14
@@ -128,8 +128,8 @@ var demoColor = [
       x: 0.5,
       y: 0.5
     }],
-    height: 500,
-    width: 500,
+    // height: 500,
+    // width: 500,
     showlegend: true,
     grid: {
       rows: 1.5,
@@ -197,7 +197,7 @@ var layout = {
         xanchor: 'right',
         y: 1
       },
-      title: "Total Loan Amount in Rural and Urban Area 2014-2019",
+      title: "Total Loan Amount by Rural and Urban Area 2014-2019",
       xaxis: {
         title: "Year"
       },

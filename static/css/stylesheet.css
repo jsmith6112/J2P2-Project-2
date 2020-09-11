@@ -1,11 +1,12 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .header {
-    color:#6b5c73;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
-    font-weight: bold;
-    padding-top: 40px;
+    color: #AD4642;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-decoration: underline;
 }
 
 .container {
@@ -25,7 +26,7 @@
     }
 
 .nav-bar-color {
-    background-color: #485c7f !important;
+    background-color: #495577 !important;
     }
 
   /* Style legend on Map */
@@ -102,7 +103,7 @@ text-align: center;
 }
 
 .navbar-light .navbar-brand {
-    color: #d06c50 !important;
+    color: #F1EEE8 !important;
     font-size: xx-large;
     font-weight: 400;
 }
@@ -123,16 +124,15 @@ text-align: center;
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background-color: #108d6f;
-    border-color: #108d6f;
+    border-color: #AD4642;
     box-shadow: none;
     outline: none;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #007b5e;
-    border-color: #007b5e;
+    background-color: #AD4642;
+    border-color: #AD4642;
 }
 
 section {
@@ -141,9 +141,11 @@ section {
 
 section .section-title {
     text-align: center;
-    color: #007b5e;
+    color: #AD4642;
     margin-bottom: 50px;
     text-transform: uppercase;
+    font-weight: bolder;
+    text-decoration: underline;
 }
 
 #team .card {
@@ -230,12 +232,13 @@ section .section-title {
 
 .backside .card a {
     font-size: 18px;
-    color: #007b5e !important;
+    color: #AD4642 !important;
 }
 
-.frontside .card .card-title,
-.backside .card .card-title {
-    color: #007b5e !important;
+.frontside .card .card-title, .backside .card .card-title {
+    color: #AD4642 !important;
+    font-size: xx-large !important;
+    font-weight: bold! important;
 }
 
 .frontside .card .card-body img {
@@ -472,10 +475,15 @@ nav.subbar > ul.nav.nav-tabs > li.active > a {
   .sub_title {
     font-size: 1.5rem;
   }
-  
-  
-  
-  
+
+.navbar-light .navbar-nav .nav-link {
+    color: #F1EEE8 !important;
+}
+
+.background{
+    background: rgb(207,223,236);
+    background: radial-gradient(circle, rgba(207,223,236,1) 0%, rgba(119,147,184,1) 100%);
+}
   
   
   

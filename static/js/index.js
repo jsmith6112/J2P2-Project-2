@@ -48,13 +48,13 @@ d3.json('static/data/data_naics.json').then(data => {
 
   function BarChartRace(chartId, extendedSettings) {
     const chartSettings = {
-      width: 850,
-      height: 500,
+      width: 650,
+      height: 400,
       padding: 40,
       titlePadding: 5,
-      columnPadding: 0.25,
+      columnPadding: 0.35,
       ticksInXAxis: 5,
-      duration: 4000,
+      duration: 3500,
       ...extendedSettings
     };
 
