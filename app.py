@@ -138,7 +138,8 @@ def fy_state_approvals():
         sba_json = json.load(json_file)
         # print(sba_json)
     print("opened file")
-    return sba_json
+    
+    return jsonify(sba_json)
 
 # -------------------------- LOAN Frequency ENDPOINTS -------------------------
 @app.route("/loan_frequency")
