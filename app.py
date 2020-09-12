@@ -132,7 +132,7 @@ def top_banks():
 @app.route("/api/sba_by_state_approvals")
 def fy_state_approvals():
 
-    with open('us-states-with-loan-data.json') as json_file:
+    with open('static/data/us-states-with-loan-data.json') as json_file:
         sba_json = json.load(json_file)
         # print(sba_json)
 
@@ -164,7 +164,7 @@ def loan_freq():
 @app.route("/states_gdp")
 def st_gdp():
 
-    with open('gdp12to19.json') as json_file:
+    with open('static/data/state_GDP.json') as json_file:
         st_json = json.load(json_file)
 
     return jsonify(st_json)
