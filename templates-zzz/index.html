@@ -1,0 +1,105 @@
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+  <!--USE THIS PATH ONCE DEPLOYED TO HEROKU-->
+  <link rel="stylesheet" href= "../css/stylesheet.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+
+<body>
+  <!--NAVIGATION BAR -->
+  <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #485c7f;">
+    <a class="navbar-brand" href="../Templates/index.html">Small Business Administration</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="../templates/index.html"> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../templates/learn-more.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../templates/trends.html">Trends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../templates/about.html">About</a>
+        </li>        
+      </ul>
+    </div>
+  </nav>
+
+   <!--END OF NAVIGATION BAR -->
+
+  <div class="jumbotron-fluid jumbotron" style="height: 500px; background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');;">
+    <div class="container">
+      <h1 class="display-4">SMALL BUSINESS ADMINISTRATION</h1>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- SMALL BUSINESS ADMIN CONTENT/LOG -->
+    <div class="row">
+      <div class="col-md-12 col-xs-12 " >
+        <img src="https://www.sba.gov/build/e0e199acd15b2c54a17de6be507cf7f7.png" alt="SBA-logo" class="center">
+        <p>Created in 1953, the U.S. Small Business Administration (SBA) continues to help small business owners and entrepreneurs pursue the American dream. 
+          It’s mission is to maintain and strengthen the nation's economy by enabling small businesses' establishment and vitality. 
+          America's entrepreneurs are innovators who take risks on ideas, invest in their communities, and create jobs. 
+          Their skills and creativity not only support their own families, they also make our neighborhoods vibrant places to live and work and fuel the nation's economic strength.
+        </p>
+    </div>
+    </div>
+    <!-- /.row -->
+    <br><br><br>
+
+      <!-- LENDING OVER TIME VISUALIZATION -->
+      <div class="row">
+      <div class="col-md-7 col-xs-12">
+        <div id="sbayear"></div>
+      </div>
+      <div class="col-md-5 col-xs-12 ">
+        <h3 class="header">LENDING OVER THE DECADE</h3>
+        <p>7A loans are the most common loans provided by the SBA Program. This chart covers loans from 2010 – Q1 2020. We can see steady growth of 16.8% per year from 2012 – 2017. </p>
+      </div>
+    </div>
+    <!-- /.row -->
+    <br><br><br>
+    <!-- LEAFLET VISUALIZATION -->
+    <div class="row">
+      <div class="col-md-7 col-xs-12">
+        <div id="projMapLayer" style="background-color: none; height:350px; width: 100%;"></div>
+      </div>
+      <div class="col-md-5 col-xs-12">
+        <h3 class="header">Small Businesses Drive Job Growth In United States</h3>
+        <p>The Office of Advocacy, an independent office within the U.S. SBA, today released the Small Business Profiles for the States and Territories. Each year, Advocacy’s economic research team gathers the most recent government economic data to construct an in-depth but user-friendly snapshot of each state’s small business employment, industry, and economic growth statistics.
+          The United States has 30.7 million small businesses, and they employ 47.3 percent of the private workforce.</p>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!--UNCOMMENT ONCE IN HEROKU-->
+  <script src="../js/choropleth.js"></script>
+  <script src="../js/maplayers.js"></script>
+<!-- PATHS FOR TESTING LOCALLY-->
+  <script src="{{url_for('static', filename='js/maplayers.js')}}"></script>
+  <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
+  </body>
+</html>

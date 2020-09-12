@@ -1,0 +1,228 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>J2P2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <!--USE THIS PATH ONCE DEPLOYED TO HEROKU-->
+    <link rel="stylesheet" href= "../css/stylesheet.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<Body>
+ <!--NAVIGATION BAR -->
+ <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #485c7f;">
+  <a class="navbar-brand" href="../templates/index.html">Small Business Administration</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="../templates/index.html"> Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../templates/learn-more.html">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../templates/trends.html">Trends</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../templates/about.html">About</a>
+      </li>        
+    </ul>
+  </div>
+</nav>
+
+ <!--END OF NAVIGATION BAR -->
+<!-- Team -->
+<section id="team" class="pb-5">
+  <div class="container">
+    <h5 class="section-title h1">ABOUT US</h5>
+    <p> The SBA serves as the nation's only go-to resource and voice for small businesses. It provides tools and resources critical to the success of America's nearly 30 million small businesses, which support more than 56 million jobs.
+         It is the only cabinet-level federal agency fully dedicated to small businesses and provides services which include:  
+         <ul>
+            <li>Counseling</li>
+            <li>Capital</li>
+            <li>Contracting</li>
+         </ul>
+         Our project focuses on loans from the 7a program. It the most common loan program and is used to help business throughout the life of the business. Funds are used to start, acquire, operate, and expand. In 2019, The SBA approved $23B to small businesses in the US
+    </p>
+        <br><br><br><br>
+      <h5 class="section-title h1">MEET THE TEAM</h5>
+      <div class="row">
+          <!-- Team member 1 JAMES SMITH -->
+          <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="image-flip" >
+                  <div class="mainflip flip-0">
+                      <div class="frontside">
+                          <div class="card">
+                              <div class="card-body text-center">
+                                  <p><img class=" img-fluid" src="https://media-exp1.licdn.com/dms/image/C4D03AQFrOYPS8Nuq1w/profile-displayphoto-shrink_200_200/0?e=1605139200&v=beta&t=cDZlouhyTRFF4t5qCai8a8vmwLdQsFODhqSdkKhU49E" alt="card image"></p>
+                                  <h4 class="card-title">JAMES SMITH</h4>
+                                  <p class="card-text">PROJECT MANAGER</p>
+                                  <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="backside">
+                          <div class="card">
+                              <div class="card-body text-center mt-4">
+                                  <h4 class="card-title">JAMES SMITH</h4>
+                                  <p class="card-text">James joined the Data Analytics program after spending the last 15 years in purchasing and procurement. For this program he served as the team’s project manager. He worked with the team to develop the idea and has made contributions to the site’s animation and machine learning features</p>
+                                  <ul class="list-inline">
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                              <i class="fa fa-github"></i>
+                                          </a>
+                                      </li>
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://www.linkedin.com/in/jamesarthursmithsourcing/">
+                                              <i class="fa fa-linkedin"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ./Team member -->
+
+          <!-- Team member 2 JESS MURILLO  -->
+          <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                  <div class="mainflip">
+                      <div class="frontside">
+                          <div class="card">
+                              <div class="card-body text-center">
+                                  <p><img class=" img-fluid" src="https://media-exp1.licdn.com/dms/image/C4D03AQGH2MkTv7S8cg/profile-displayphoto-shrink_200_200/0?e=1605139200&v=beta&t=FrrWMt8WnrM3LKrsZ82jE7c5fvY3bqz1DwjdzMqeHbU" alt="card image"></p>
+                                  <h4 class="card-title">JESSICA MURILLO</h4>
+                                  <p class="card-text"> Front-End Developer </p>
+                                  <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="backside">
+                          <div class="card">
+                              <div class="card-body text-center mt-4">
+                                  <h4 class="card-title">JESSICA MURILLO</h4>
+                                  <p class="card-text">I have a passion for tech, problem-solving and efficiency. I look at each obstacle as an exciting new learning experience. For this project, my main role was developing the front-end and managing the database. </p>
+                                  <ul class="list-inline">
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://github.com/jmurillo-13">
+                                              <i class="fa fa-github"></i>
+                                          </a>
+                                      </li>
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://www.linkedin.com/in/jessica-murillo-03607613b/">
+                                              <i class="fa fa-linkedin"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ./Team member -->
+          <!-- Team member 3 PARIYA POOCHAROEN -->
+          <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                  <div class="mainflip">
+                      <div class="frontside">
+                          <div class="card">
+                              <div class="card-body text-center">
+                                  <p><img class=" img-fluid" src="https://media-exp1.licdn.com/dms/image/C4E03AQFoYZHItjHHAQ/profile-displayphoto-shrink_200_200/0?e=1605139200&v=beta&t=QCHWPKSD4d3LFEEMCWH0wpGR1C2cGy09FEwHBTPF9EY" alt="card image"></p>
+                                  <h4 class="card-title">PARIYA POOCHAROEN</h4>
+                                  <p class="card-text">Data Analyst</p>
+                                  <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="backside">
+                          <div class="card">
+                              <div class="card-body text-center mt-4">
+                                  <h4 class="card-title">PARIYA POOCHAROEN</h4>
+                                  <p class="card-text">My major role on this project is to use Python Library (Pandas) to prepare and clean the SBA data. 
+                                      Creating queries through MySql Database in order to test and filter data we desired to focus on. Ultimately, we used Flask App to create the API Endpoint as JSON Format and generated the visualizations using JavaScripts Libraries (Plotly.js, D3.js, Leaflet.js).</p>
+                                  <ul class="list-inline">
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://github.com/pariyapariya ">
+                                              <i class="fa fa-github"></i>
+                                          </a>
+                                      </li>
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://www.linkedin.com/in/pariya-poocharoen-b68b93100/">
+                                              <i class="fa fa-linkedin"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ./Team member -->
+          
+          <!-- Team member 4 KANDRA ROMANOWSKI -->
+          <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                  <div class="mainflip">
+                      <div class="frontside">
+                          <div class="card">
+                              <div class="card-body text-center">
+                                  <p><img class=" img-fluid" src="https://media-exp1.licdn.com/dms/image/C4E03AQH9Hvz-6OW_fw/profile-displayphoto-shrink_200_200/0?e=1605139200&v=beta&t=fbcj5iXbTgm72fTO3Z9RHqBPZLiG_vlxwu3NrP2hCCc"alt="card image"></p>
+                                  <h4 class="card-title">KANDRA ROMANOWSKI</h4>
+                                  <p class="card-text">RESEARCHER</p>
+                                  <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="backside">
+                          <div class="card">
+                              <div class="card-body text-center mt-4">
+                                  <h4 class="card-title">KANDRA ROMANOWSKI</h4>
+                                  <p class="card-text">My primary role was to research data related to the Small Business Administration. Using Chrome web browser, I investigated and acquired Small Business Administration data to be interpreted and visualized.</p>
+                                  <ul class="list-inline">
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                              <i class="fa fa-github"></i>
+                                          </a>
+                                      </li>
+                                      <li class="list-inline-item">
+                                          <a class="social-icon text-xs-center" target="_blank" href="https://www.linkedin.com/in/kandra-d-romanowski-982a284b/">
+                                              <i class="fa fa-linkedin"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- ./Team member -->
+
+      </div>
+  </div>
+</section>
+
+</Body>
+</html>

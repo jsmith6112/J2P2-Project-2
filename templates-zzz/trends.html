@@ -1,0 +1,323 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Learn More</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <!-- James Add sbastlyes below-->
+    <link rel="stylesheet" href="../css/sbastyles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sbastyles.css') }}">
+    <!--USE THIS PATH ONCE DEPLOYED TO HEROKU-->
+    <link rel="stylesheet" href= "../css/stylesheet.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+ <!--NAVIGATION BAR -->
+ <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #485c7f;">
+    <a class="navbar-brand" href="../Templates/index.html">Small Business Administration</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="../templates/index.html"> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../templates/learn-more.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../templates/trends.html">Trends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../templates/about.html">About</a>
+        </li>        
+      </ul>
+    </div>
+  </nav>
+   <!--END OF NAVIGATION BAR -->
+
+ <!-- Page Content -->
+<div class="container-fluid">
+      <!-- ROW OF 3 CENSUS GRAPHS -->
+      <div class="row">
+        <div class="col-md-4">
+          <div id=plot_gender></div>
+        </div>
+        <br><br><br>
+        <div class="col-md-4">
+          <div id = plot_loan_all_demo></div>
+        </div>
+        <br><br><br>
+        <div class="col-md-4">
+          <div id=plot_rural_urban></div>
+        </div>
+    </div>
+   <!-- ROW OF 3 CENSUS GRAPHS -->
+
+ <!-- BUSINESS DEMOGRAPHICS WRITE UP -->
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    
+      <div class="col-md-8">
+        <br><br>
+        <h3 class="header">BUSINESS OWNERS DEMOGRAPHCS</h3>
+        <p>The Annual Business Survey (ABS) provides information on selected economic and demographic characteristics for businesses and business owners by sex, ethnicity, race, and veteran status. The ABS is conducted jointly by the U.S. Census Bureau and the National Center for Science and Engineering Statistics within the National Science Foundation. 
+          The ABS replaces the five-year Survey of Business Owners (SBO) for employer businesses, the Annual Survey of Entrepreneurs (ASE), the Business R&D and Innovation for Microbusinesses survey (BRDI-M), and the innovation section of the Business R&D and Innovation Survey (BRDI-S). 
+          The data are compiled by combining data collected on businesses and business owners in the ABS with data collected on the economic census and administrative records. Business ownership is defined as havingmore than 50% of the stock or equity in the business and is categorized by </p>
+          <br>
+          <ul>
+            <li>Sex: Male; female; or equally male/female</li>
+            <li>Ethnicity: Hispanic; equally Hispanic/non-Hispanic; non-Hispanic</li>
+            <li>Race: White; Black or African American; American Indian or Alaska Native;Asian; Native Hawaiian or Other Pacific Islander; minority; equally minority/nonminority; nonminority</li>
+            <li>Veteran status: Veteran; equally veteran/nonveteran; nonveteran</li>
+            <li>Publicly held and other firms not classifiable by sex, ethnicity, race, and veteran status</li>
+          </ul>
+          <br>
+           <p>Firms equally male-/female-owned, equally minority-/nonminorityowned, and equally veteran-/nonveteran-owned are counted andtabulated as separate categories.</p>       
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+  <!-- END OF BUSINESS DEMOGRAPHICS WRITE UP -->
+  <br>
+   <!-- TOP BORROWERS WRITE UP -->
+   <div class="row">
+    <div class="col-md-2">
+    </div>
+    
+      <div class="col-md-8">
+        <h3 class="header">TOP BORROWERS</h3>
+        <h6 class="sub-header">Loan by Industry: Funding Volume 2012 to 2020</h6>
+        <p>To delve into who is receiving SBA 7(a) loans by industry, we considered which industriesreceived the highest amount of SBA loan dollars between 2012 and 2018. 
+          This was determined by evaluating the cumulative loan approval amount for each industry during this time period. 
+          Based on this data, hotels and motels received the most SBA loan funding between 2012 and 2018. 
+          The average loan size for hotels is $1,400,732,000 compared to the average SBA 7(a) loan amount of $425,500.</p>
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+  <!-- END OF TOP BORROWERS WRITE UP -->
+
+<!-- FOURTH ROW -- BAR CHART RACE AND TOP FRANCHISES-->
+    <div class="row">
+        <div class="col-md-6">
+            <svg id="bar-chart-race">
+                <g class="chart-container">
+                    <text class="chart-title"></text>
+                    <g class="x-axis"></g>
+                    <g class="y-axis"></g>
+                    <g class="columns"></g>
+                    <text class="current-date"></text>
+                </g>
+            </svg>
+        </div>
+        <div class="col-md-6">
+          <canvas id="myChart" width="200" height="70px"></canvas>
+        </div>
+    </div>
+<!-- FOURTH ROW -- BAR CHART RACE AND TOP FRANCHISES-->
+<br><br><br><br><br>
+<!-- BRIEF DESCRIPTION OF TABELS-->
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  
+    <div class="col-md-8">
+      <h3 class="header">FIND THE RIGHT LENDER FOR YOU</h3>
+      <p>Understand the percentage guaranteed to you and your industry by the Small Business Administration and get to 
+        know the top bank lending partners in your state.
+      </p>
+    </div>
+
+    <div class="col-md-2">
+    </div>
+  </div>
+
+
+
+          
+<!----------------------------------------TABELS ---------------------->
+<!--FORTH ROW OF 2-->    
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <h3 class="sub_title">SBA Percent Guaranteed Small Business Loan</h3>
+    <label for="state_selector-2">STATE :</label>
+    <select id='state_selector-2'>
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option>
+      <option value="CA">California</option>
+      <option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option>
+      <option value="DE">Delaware</option>
+      <option value="DC">District Of Columbia</option>
+      <option value="FL">Florida</option>
+      <option value="GA">Georgia</option>
+      <option value="HI">Hawaii</option>
+      <option value="ID">Idaho</option>
+      <option value="IL">Illinois</option>
+      <option value="IN">Indiana</option>
+      <option value="IA">Iowa</option>
+      <option value="KS">Kansas</option>
+      <option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option>
+      <option value="ME">Maine</option>
+      <option value="MD">Maryland</option>
+      <option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option>
+      <option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option>
+      <option value="MT">Montana</option>
+      <option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option>
+      <option value="NH">New Hampshire</option>
+      <option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option>
+      <option value="NY">New York</option>
+      <option value="NC">North Carolina</option>
+      <option value="ND">North Dakota</option>
+      <option value="OH">Ohio</option>
+      <option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option>
+      <option value="PA">Pennsylvania</option>
+      <option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option>
+      <option value="SD">South Dakota</option>
+      <option value="TN">Tennessee</option>
+      <option value="TX">Texas</option>
+      <option value="UT">Utah</option>
+      <option value="VT">Vermont</option>
+      <option value="VA">Virginia</option>
+      <option value="WA">Washington</option>
+      <option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option>
+      <option value="WY">Wyoming</option>
+    </select>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table id="table_pct_guarant" class="table table-hover table-sm mb-0">
+        <thead>
+          <tr>
+            <th id="pctGuarant_tableHeader">Small Business Industry</th>
+            <!-- <th>Approved Loan Amount</th> -->
+            <!-- <th>Guaranteed Amount</th> -->
+            <th>SBA % of Guaranty</th>
+          </tr>
+        </thead>
+        <tbody id='table_pct_top_guarant'></tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="col-xs-12 col-sm-6">
+    <h3 class="sub_title">Loan Approval Banks</h3>
+    <label for="state_selector_b">STATE :</label>
+    <select id='state_selector_b'>
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option>
+      <option value="CA">California</option>
+      <option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option>
+      <option value="DE">Delaware</option>
+      <option value="DC">District Of Columbia</option>
+      <option value="FL">Florida</option>
+      <option value="GA">Georgia</option>
+      <option value="HI">Hawaii</option>
+      <option value="ID">Idaho</option>
+      <option value="IL">Illinois</option>
+      <option value="IN">Indiana</option>
+      <option value="IA">Iowa</option>
+      <option value="KS">Kansas</option>
+      <option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option>
+      <option value="ME">Maine</option>
+      <option value="MD">Maryland</option>
+      <option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option>
+      <option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option>
+      <option value="MT">Montana</option>
+      <option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option>
+      <option value="NH">New Hampshire</option>
+      <option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option>
+      <option value="NY">New York</option>
+      <option value="NC">North Carolina</option>
+      <option value="ND">North Dakota</option>
+      <option value="OH">Ohio</option>
+      <option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option>
+      <option value="PA">Pennsylvania</option>
+      <option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option>
+      <option value="SD">South Dakota</option>
+      <option value="TN">Tennessee</option>
+      <option value="TX">Texas</option>
+      <option value="UT">Utah</option>
+      <option value="VT">Vermont</option>
+      <option value="VA">Virginia</option>
+      <option value="WA">Washington</option>
+      <option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option>
+      <option value="WY">Wyoming</option>
+    </select>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table id="bank-table" class="table table-hover table-sm mb-0">
+        <thead>
+          <tr>
+            <th>Bank Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Average Loan Approval</th>
+          </tr>
+        </thead>
+        <tbody id='bank-tbody'></tbody>
+      </table>
+    </div>
+   
+</div>
+     
+<!--END FOURTH ROW OF 2--> 
+
+
+</div>
+
+  
+  <!--UNCOMMENT ONCE IN HEROKU-->
+  <script src="../js/app.js"></script>
+  <script src="../js/map.js"></script>
+  <script src="../js/choropleth.js"></script>
+  <script src="../js/demographics.js"></script>
+  
+
+    <!-- PATHS FOR TESTING LOCALLY-->
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+    <script src="{{url_for('static', filename='js/demographics.js')}}"></script>
+  <script src="{{url_for('static', filename='js/config.js')}}"></script>
+  <script src="{{url_for('static', filename='js/map.js')}}"></script>
+  <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/index.js')}}"></script>
+</body>
+</html>
