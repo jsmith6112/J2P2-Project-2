@@ -6,7 +6,7 @@ import pymysql
 import os 
 #from sqlalchemy import create_engine
 
-from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
+# from config import remote_db_endpoint, remote_db_port, remote_db_user, remote_db_pwd, remote_db_name
 pymysql.install_as_MySQLdb()
 
 from flask import (
