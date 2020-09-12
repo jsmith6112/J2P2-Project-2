@@ -134,7 +134,7 @@ def fy_state_approvals():
 
     print("trying to open file")
 
-    with open('/static/data/us-states-with-loan-data.json') as json_file:
+    with open('us-states-with-loan-data.json') as json_file:
         sba_json = json.load(json_file)
         # print(sba_json)
     print("opened file")
