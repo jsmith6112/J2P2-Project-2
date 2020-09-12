@@ -15,7 +15,6 @@
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
   crossorigin=""></script>
-  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -86,25 +85,21 @@
     <!-- LEAFLET VISUALIZATION -->
     <div class="row">
       <div class="col-md-7 col-xs-12">
-        <div id="map" style="background-color: none; height:350px; width: 100%;"></div>
+        <div id="projMapLayer" style="background-color: none; height:350px; width: 100%;"></div>
       </div>
       <div class="col-md-5 col-xs-12">
-        <h3 class="header">GDP BY STATE -- Header to be changed</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+        <h3 class="header">Small Businesses Drive Job Growth In United States</h3>
+        <p>The Office of Advocacy, an independent office within the U.S. SBA, today released the Small Business Profiles for the States and Territories. Each year, Advocacy’s economic research team gathers the most recent government economic data to construct an in-depth but user-friendly snapshot of each state’s small business employment, industry, and economic growth statistics.
+          The United States has 30.7 million small businesses, and they employ 47.3 percent of the private workforce.</p>
       </div>
     </div>
     <!-- /.row -->
   </div>
   <!--UNCOMMENT ONCE IN HEROKU-->
-  <script src="../js/app.js"></script>
-  <script src="../js/map.js"></script>
   <script src="../js/choropleth.js"></script>
-  <script src="../js/industry_class.js"></script>
+  <script src="../js/maplayers.js"></script>
 <!-- PATHS FOR TESTING LOCALLY-->
-  <!-- <script src="{{url_for('static', filename='js/config.js')}}"></script> -->
-  <script src="{{url_for('static', filename='js/app.js')}}"></script>
-  <script src="{{url_for('static', filename='js/map.js')}}"></script>
+  <script src="{{url_for('static', filename='js/maplayers.js')}}"></script>
   <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
-  <script src="{{ url_for('static', filename='js/industry_class.js')}}"></script>
   </body>
 </html>

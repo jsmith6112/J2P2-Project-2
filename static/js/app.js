@@ -74,37 +74,38 @@ init();
 
 //FUNCTION FOR INITIAL GDP GRAPH OVER TIME ON DASHBOARD
 function gdpinit() {
-    var url = "/gdp";
-    d3.json(url).then(function(res) {
-      var year = ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'];
-      var st_gdp = ['181349.8','186299','191481','194211','200402.7','203829.8','210364.4','221735','230968'];
-      var st = res.map(d => d.STATE);
+  var url = "/gdp";
+  d3.json(url).then(function(res) {
+    var year = ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'];
+    var st_gdp = ['181349.8','186299','191481','194211','200402.7','203829.8','210364.4','221735','230968'];
+    var st = res.map(d => d.STATE);
 
-      var trace = [{
-        'x': year,
-        'y': st_gdp,
-        'type': 'line',
-        'marker': {
-          color: '#DA9A63'
-        }
-      }];
+    var trace = [{
+      'x': year,
+      'y': st_gdp,
+      'type': 'line',
+      'marker': {
+        color: '#DA9A63'
+      }
+    }];
 
-      var layout = {
-        title: "State Gross Domestic Products (GDP)",
-        xaxis: {
-          title: "Year"
-        },
-        yaxis: {
-          title: "GDP (millions)"
-        }
-      };
+    var layout = {
+      title: "State Gross Domestic Products (GDP)",
+      xaxis: {
+        title: "Year"
+      },
+      yaxis: {
+        title: "GDP (millions)"
+      }
+    };
 
-      var config = {responsive: true, displayModeBar: false, displaylogo: false }
+    var config = {responsive: true, displayModeBar: false, displaylogo: false }
 
-      Plotly.newPlot("plot_gdp", trace, layout, config);
-    });
+    Plotly.newPlot("plot_gdp", trace, layout, config);
+  });
 }
 gdpinit();
+
 
 
 //FUNCTION FOR INITIAL EXPENSES PER CAPITA GRAPH OVER TIME ON DASHBOARD

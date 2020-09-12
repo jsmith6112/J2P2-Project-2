@@ -446,6 +446,37 @@ def percent_guaranteed():
     conn.close()
     return sba_json
 
+# ------------------------ GDP MAP ENDPOINTS -----------------------------------
+@app.route("/gdp_map")
+def gdp_map_fn():
+    print('---- TRYING TO OPEN FILE-----------')
+    with open('static/data/state_GDP.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+    print('---- OPENED FILE-----------')
+    print('---- READY T RETURN -----------')
+    return jsonify(sba_json)
+
+# ==============================================================================
+# ------------------------ Jobs Opening MAP ENDPOINTS -----------------------------------
+@app.route("/jobs_map")
+def jobs_map_fn():
+    print('---- TRYIN TO OPEN FILE-----------')
+    with open('static/data/state_employments.json') as json_file:
+        try:
+            sba_json = json.load(json_file)
+        except Exception as e:
+            print('---- ERROR ----')
+            print(e)
+        print(sba_json)
+    print('---- OPENED FILE-----------')
+    print('---- READY T RETURN -----------')
+    return jsonify(sba_json)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
