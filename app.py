@@ -278,7 +278,7 @@ def vetBiz():
     conn.close()
     return vet_json
 
-# ------------------ VET OWNED BIZ END POINT ------------------------------------
+# ------------------ monority OWNED BIZ END POINT ------------------------------------
 @app.route('/api/minority_owned')
 def minorityBiz():
     conn = engine.connect()

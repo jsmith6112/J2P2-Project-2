@@ -516,3 +516,7 @@ nav.subbar > ul.nav.nav-tabs > li.active > a {
     font-weight: bolder;
     text-decoration: underline;
 }
+.sub-header{
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
