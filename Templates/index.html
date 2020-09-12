@@ -56,42 +56,44 @@
   </div>
 
   <div class="container">
-    <!-- LEAFLET VISUALIZATION -->
+
+    <!-- SMALL BUSINESS ADMIN CONTENT/LOG -->
     <div class="row">
-      <div class="col-md-7 graphics">
-        <div id="map" style="background-color: none; height:350px; width: 100%;"></div>
-      </div>
-      <div class="col-md-5">
-        <h3>GDP BY STATE -- Header to be changed</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-      </div>
+      <div class="col-md-12 col-xs-12 " >
+        <img src="https://www.sba.gov/build/e0e199acd15b2c54a17de6be507cf7f7.png" alt="SBA-logo" class="center">
+        <p>Created in 1953, the U.S. Small Business Administration (SBA) continues to help small business owners and entrepreneurs pursue the American dream. 
+          It’s mission is to maintain and strengthen the nation's economy by enabling small businesses' establishment and vitality. 
+          America's entrepreneurs are innovators who take risks on ideas, invest in their communities, and create jobs. 
+          Their skills and creativity not only support their own families, they also make our neighborhoods vibrant places to live and work and fuel the nation's economic strength.
+        </p>
+    </div>
     </div>
     <!-- /.row -->
-    <hr>
-     <!-- LENDING OVER TIME VISUALIZATION -->
-     <div class="row">
-      <div class="col-md-7">
+    <br><br><br>
+
+      <!-- LENDING OVER TIME VISUALIZATION -->
+      <div class="row">
+      <div class="col-md-7 col-xs-12">
         <div id="sbayear"></div>
       </div>
-      <div class="col-md-5">
-        <h3>LENDING OVER THE DECADE</h3>
+      <div class="col-md-5 col-xs-12 ">
+        <h3 class="header">LENDING OVER THE DECADE</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
       </div>
     </div>
     <!-- /.row -->
-    <hr>
-    <!-- UNKNOWN VISUALIZATION -->
+    <br><br><br>
+    <!-- LEAFLET VISUALIZATION -->
     <div class="row">
-      <div class="col-md-7 graphics">
-        <div id="viz-3" style="background-color: none; height:350px; width: 100%;"></div>
+      <div class="col-md-7 col-xs-12">
+        <div id="map" style="background-color: none; height:350px; width: 100%;"></div>
       </div>
-      <div class="col-md-5">
-        <h3>Header for viz 3</h3>
+      <div class="col-md-5 col-xs-12">
+        <h3 class="header">GDP BY STATE -- Header to be changed</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
       </div>
     </div>
     <!-- /.row -->
-    <hr>
   </div>
   <!--UNCOMMENT ONCE IN HEROKU-->
   <script src="../js/app.js"></script>
@@ -104,9 +106,5 @@
   <script src="{{url_for('static', filename='js/map.js')}}"></script>
   <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
   <script src="{{ url_for('static', filename='js/industry_class.js')}}"></script>
-    <footer>
-      <p class="paragraphs-home">AUTHORS: JESSICA MURILLO - PARIYA POOCHAROEN - JAMES SMITH - KANDRA ROMANOWSKI<br>
-      <a href="https://github.com/jsmith6112/J2P2-Project-2">GitHub</a></p>
-    </footer>
   </body>
 </html>

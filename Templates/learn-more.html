@@ -27,7 +27,7 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
-<Body>
+<Body style="background-color:#586790;">
  <!--NAVIGATION BAR -->
  <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #485c7f;">
   <a class="navbar-brand" href="../Templates/index.html">Small Business Administration</a>
@@ -57,7 +57,7 @@
   <!--HEADER FOR DASHBOARD-->
   <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
   <div class="intro">
-      <h2 class="text-center header">SMALL BUSINESS OWNER DASHBOARD</h2>
+      <h2 class="text-center dash-header">SMALL BUSINESS OWNER DASHBOARD</h2>
       <p class="text-center">Use the interactive dashboard to learn about where to apply for a loan </p>
   </div>
   <!-- END HEADER FOR DASHBOARD-->
@@ -128,32 +128,27 @@
      <div class="row">
          
            <div class="col-xs-12 col-sm-4">
-             <div class="panel panel-primary">
-                  <h3>POPULATION</h3>
-                   <h3 id='state-population'>
-                     7 Billion
+                  <h4 class='dash-header'>POPULATION</h4>
+                   <h4 id='state-population' class="dash-number">
+                    330,275,270	
                      <br/><br/><br/><br/>
-                   </h3>
-             </div>
+                   </h4>
           </div>
         
          <div class="col-xs-12 col-sm-4">
-             <div class="panel panel-primary">
-                <h3>NUMBER OF WOMEN OWNED BUSINESSES</h3>
-                <h3 id='women-biz'>
+                <h4 class='dash-header'>NUMBER OF WOMEN OWNED BUSINESSES</h4>
+                <h4 id='women-biz'class="dash-number">
+                  11.6 Million
                      <br/><br/><br/><br/>
-                </h3>
-             </div>
+                </h4>
          </div>
          
          <div class="col-xs-12 col-sm-4">
-             <div class="panel panel-primary">
-              <h3>NUMBER OF VETERAN OWNED BUSINESSES</h3>
-              <h3 id='vet-biz'>
-                  
+              <h4 class='dash-header'>NUMBER OF VETERAN OWNED BUSINESSES</h4>
+              <h4 id='vet-biz'class="dash-number">
+                2.4 Million
                   <br/><br/><br/><br/>
-              </h3>
-             </div>
+              </h4>
          </div>
       </div>
         
@@ -162,35 +157,31 @@
     <!--SECOND ROW OF 3-->
      <div class="row">
           <div class="col-xs-12 col-sm-4">
-             <div class="panel panel-primary">
-                <h3>NUMBER OF MINORITY OWNED BUSINESSES</h3>
-                <h3 id='minority-biz'>
+                <h4 class='dash-header'>NUMBER OF MINORITY OWNED BUSINESSES</h4>
+                <h4 id='minority-biz'class="dash-number">
+                  44 million
                     <br><br><br><br>
-                </h3>
-             </div>
+                </h4>
          </div>
         
          <div class="col-xs-12 col-sm-4">
-             <div class="panel panel-primary">
-              <h3>AVERAGE AMOUNT GIVEN</h3>
-              <h3 id='avg-loan'>
+              <h4 class='dash-header'>AVERAGE AMOUNT GIVEN</h4>
+              <h4 id='avg-loan' class="dash-number">
+                $450,881
                 <br><br><br><br>
-              </h3>
-             </div>
+              </h4>
          </div>
          
          <div class="col-xs-12 col-sm-4">
-             <div class="panel panel-primary">
-              <h3>AVERAGE INTEREST RATE </h3>
-              <h3 id='avg-int'>
+              <h4 class='dash-header '>AVERAGE INTEREST RATE </h4>
+              <h4 id='avg-int'class="dash-number">
+                7.89%
                 <br><br><br><br>
-              </h3>
-             </div>
+              </h4>
          </div>
         
       </div>  
     <!--END OF SECOND ROW OF 3-->
-      <br>
 
     <!--FIRST ROW OF 2-->    
     <div class="row">
@@ -203,10 +194,8 @@
         <br><br><br><br><br><br><br><br><br>
       </div>
     </div>
-   
     <!--END FIRST ROW OF 2--> 
-        
-        
+      
     <!--SECOND ROW OF 2-->    
     <div class="row">
         <div class="col-xs-12 col-sm-6">
@@ -236,17 +225,15 @@
     
     <div class="col-xs- col-sm-6">
       </div>
-</div>
-
-        
+</div> 
 </div>
   <!-- CONTAINER OF DASHBOARD-->    
 
   <!--UNCOMMENT ONCE IN HEROKU-->
-  <!-- <script src="../js/app.js"></script>
+  <script src="../js/app.js"></script>
   <script src="../js/map.js"></script>
   <script src="../js/choropleth.js"></script>
-  <script src="../js/industry_class.js"></script> -->
+  <script src="../js/industry_class.js"></script>
   
   <script src="{{url_for('static', filename='js/app.js')}}"></script>
   <!-- <script src="{{url_for('static', filename='js/config.js')}}"></script> -->
@@ -254,6 +241,5 @@
   <script src="{{url_for('static', filename='js/choropleth.js')}}"></script>
   <script src="{{ url_for('static', filename='js/industry_class.js')}}"></script>
   <script src="{{ url_for('static', filename='js/index.js')}}"></script>
-
 </body>
 </html>

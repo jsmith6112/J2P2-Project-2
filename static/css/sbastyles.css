@@ -19,7 +19,7 @@ svg {
 }
 
 #bar-chart-race {
-  background-color: #F1EEE8;
+  background-color: #FFFF;
   opacity: 0.95;
 }
 
@@ -60,7 +60,7 @@ svg {
 
 .columns .column-container .column-title {
   text-anchor: end;
-  fill:#F1EEE8;
+  fill:#FFFF;
   dominant-baseline: middle;
   font-size: 12px;
 }

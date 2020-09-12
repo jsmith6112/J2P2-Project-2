@@ -10,13 +10,13 @@ femaleOwnedMoreThan50 = ['2,210,337,400.00',
   '2,953,646,400.00'
 ];
 
-femaleOwnedLessThan50 = ['2,894,365,100.00',
-  '3,542,591,300.00',
-  '3,421,359,800.00',
-  '3,553,821,900.00',
-  '3,514,247,000.00',
-  '2,927,114,200.00'
-];
+// femaleOwnedLessThan50 = ['2,894,365,100.00',
+//   '3,542,591,300.00',
+//   '3,421,359,800.00',
+//   '3,553,821,900.00',
+//   '3,514,247,000.00',
+//   '2,927,114,200.00'
+// ];
 
 maleOwned = ['11,878,294,300.00',
   '15,038,658,800.00',
@@ -38,17 +38,17 @@ var trace1 = {
   }
 };
 
-var trace2 = {
-  x: year,
-  y: femaleOwnedLessThan50,
-  name: 'Female Owned Less Than 50%',
-  type: 'bar',
-  textposition: 'auto',
-  marker: {
-    color: '#C65A43',
-    opacity: 0.9
-  }
-};
+// var trace2 = {
+//   x: year,
+//   y: femaleOwnedLessThan50,
+//   name: 'Female Owned Less Than 50%',
+//   type: 'bar',
+//   textposition: 'auto',
+//   marker: {
+//     color: '#C65A43',
+//     opacity: 0.9
+//   }
+// };
 
 var trace3 = {
   x: year,
@@ -62,7 +62,7 @@ var trace3 = {
   }
 };
 
-var data = [trace1, trace2, trace3];
+var data = [trace1, trace3];
 
 var layout = {
   barmode: 'group',

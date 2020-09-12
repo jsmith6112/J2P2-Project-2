@@ -373,6 +373,7 @@ def gdp_by_state():
             STATE
         FROM `state-gdp`
         GROUP BY STATE_FULL_NAME, Year
+        ORDER BY Year ASC
     '''
     sba_df = pd.read_sql(query, con=conn)
     sba_json = sba_df.to_json(orient='records')

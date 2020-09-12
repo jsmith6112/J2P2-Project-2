@@ -65,7 +65,7 @@ function init() {
       }
     };
 
-    var config = { responsive: true }
+    var config = {responsive: true, displayModeBar: false, displaylogo: false}
 
     Plotly.newPlot("plot_pop", trace, layout, config);
   });
@@ -76,7 +76,7 @@ init();
 function gdpinit() {
     var url = "/gdp";
     d3.json(url).then(function(res) {
-      var year = res.map(d => d.Year);
+      var year = ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'];
       var st_gdp = ['181349.8','186299','191481','194211','200402.7','203829.8','210364.4','221735','230968'];
       var st = res.map(d => d.STATE);
 
@@ -99,7 +99,7 @@ function gdpinit() {
         }
       };
 
-      var config = {responsive: true}
+      var config = {responsive: true, displayModeBar: false, displaylogo: false }
 
       Plotly.newPlot("plot_gdp", trace, layout, config);
     });
@@ -160,7 +160,7 @@ function pceinit() {
         }
       };
   
-      var config = {responsive: true}
+      var config = {responsive: true, displayModeBar: false, displaylogo: false}
   
       Plotly.newPlot("plot_inc_exp", data, layout, config);
     });
@@ -198,7 +198,7 @@ function jobsinit() {
         title: "Number of Job Openings"
       }
     };
-    var config = {responsive: true}
+    var config = {responsive: true, displayModeBar: false, displaylogo: false }
     Plotly.newPlot("plot_jobs", trace, layout, config);
   });
 }
@@ -263,13 +263,6 @@ d3.select('#state_selector_b').on('change', buildTablePct2);
 buildTablePct2();
 
 
-
-
-
-
-
-  
-
 //CODE FOR FRANCHISE CHART//
 function Franchise() {
   /* data route */
@@ -286,19 +279,19 @@ function Franchise() {
       data: {
         labels: franchiseName,
         datasets: [{
-          // label: 'TOP FRANCHISES',
+          label: 'TOP FRANCHISES',
           data: grossApprove,
           backgroundColor: [
-            'rgba(222, 110, 75, 0.5)',
-            'rgba(199, 107, 83, 0.5)',
-            'rgba(176, 104, 90, 0.5)',
-            'rgba(153, 101, 97, 0.5)',
-            'rgba(143, 100, 104, 0.5)',
-            'rgba(130, 98, 105, 0.5)',
-            'rgba(107, 95, 112, 0.5)',
-            'rgba(84, 92, 120, 0.5)',
-            'rgba(133, 148, 164, 0.5)',
-            'rgba(61, 90, 128, 0.5)'
+            'rgba(222, 110, 75, .9)',
+            'rgba(199, 107, 83, 0.9)',
+            'rgba(176, 104, 90, 0.9)',
+            'rgba(153, 101, 97, 0.9)',
+            'rgba(143, 100, 104, 0.9)',
+            'rgba(130, 98, 105, 0.9)',
+            'rgba(107, 95, 112, 0.9)',
+            'rgba(84, 92, 120, 0.9)',
+            'rgba(133, 148, 164, 0.9)',
+            'rgba(61, 90, 128, 0.9)'
 
 
           ],
@@ -345,14 +338,11 @@ function sbaloans_by_year() {
       y: year,
       orientation: 'h',
       marker: {
-        color: 'rgb(72, 92, 127)',
-        opacity: 0.7
+        color: '#586790'
       }
     }];
     var layout = {
       autosize: false,
-      width: 100,
-      height: 100,
       xaxis: {
         title: "Loan Dollars ($Billions)"
       },
@@ -360,7 +350,8 @@ function sbaloans_by_year() {
         title: "Fiscal Year"
       }
     };
-    Plotly.newPlot('sbayear', data, layout);
+    var config = {responsive: true, displayModeBar: false, displaylogo: false}
+    Plotly.newPlot('sbayear', data, layout, config);
   });
 }
 sbaloans_by_year();
@@ -471,7 +462,7 @@ function updatePopulation() {
       }
     };
 
-    var config = { responsive: true, displayModeBar: false, displaylogo: false }
+    var config = {responsive: true, displayModeBar: false, displaylogo: false, staticPlot: true}
 
     Plotly.react("plot", trace, layout, config);
   });
@@ -503,7 +494,7 @@ function updatePopulation() {
         showticklabels: false
       }
     };
-    var popconfig = {responsive: true}
+    var popconfig = {responsive: true, displayModeBar: false, displaylogo: false, staticPlot: true}
     Plotly.react("plot_pop", poptrace, poplayout, popconfig);
   });
 
@@ -537,9 +528,7 @@ function updatePopulation() {
       }
     };
 
-    var gdpconfig = {
-      responsive: true
-    }
+    var gdpconfig = {responsive: true, displayModeBar: false, displaylogo: false, staticPlot: true}
 
     Plotly.react("plot_gdp", trace, layout, gdpconfig);
   });
@@ -590,9 +579,7 @@ function updatePopulation() {
       }
     };
 
-    var config = {
-      responsive: true
-    }
+    var config ={responsive: true, displayModeBar: false, displaylogo: false,staticPlot: true}
   
     Plotly.react("plot_inc_exp", data, layout, config);
   });
@@ -630,9 +617,7 @@ function updatePopulation() {
         }
       };
 
-      var config = {
-        responsive: true
-      }
+      var config = {responsive: true, displayModeBar: false, displaylogo: false, staticPlot: true}
 
       Plotly.react("plot_jobs", trace, layout, config);
     });

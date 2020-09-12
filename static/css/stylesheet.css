@@ -474,6 +474,8 @@ nav.subbar > ul.nav.nav-tabs > li.active > a {
   }
   .sub_title {
     font-size: 1.5rem;
+    color:#AD4642 ;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
 .navbar-light .navbar-nav .nav-link {
@@ -484,11 +486,33 @@ nav.subbar > ul.nav.nav-tabs > li.active > a {
     background: rgb(207,223,236);
     background: radial-gradient(circle, rgba(207,223,236,1) 0%, rgba(119,147,184,1) 100%);
 }
-  
-  
-  
-  
-  
-  
-  
-  
+
+.svg-container{
+    position: inherit !important;
+    width: 100% !important;
+    height: 450px !important;
+}
+
+.dash-number{
+    color: #EDB763;
+    font-size: xxx-large;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 40px;
+  }
+
+.dash-header {
+    text-align: center;
+    color: #F1EEE8;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-decoration: underline;
+}
