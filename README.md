@@ -17,7 +17,7 @@ Access to web browser
 
 ## Authors
 
-* **James A. Smith**    [PurpleBooth](https://github.com/PurpleBooth)
-* **Jessica Murillo**   [PurpleBooth](https://github.com/PurpleBooth)
-* **Pariya Poocharoen** [PurpleBooth](https://github.com/PurpleBooth)
-* **Kandra Romanowski** [PurpleBooth](https://github.com/PurpleBooth)
+* **James A. Smith**    [JAZ](https://github.com/jsmith6112)
+* **Jessica Murillo**   [Jessica](github.com/jmurillo-13)
+* **Pariya Poocharoen** [Pariya](https://github.com/pariyapariya)
+* **Kandra Romanowski** [Kandra](https://github.com/kandrar)
